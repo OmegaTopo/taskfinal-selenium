@@ -1,6 +1,6 @@
-package captacao.pages;
+package captacao.vemser.dbccompany.pages;
 
-import captacao.util.Elements;
+import captacao.vemser.dbccompany.util.Elements;
 import org.openqa.selenium.By;
 
 public class BasePage extends Elements {

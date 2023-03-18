@@ -1,6 +1,6 @@
-package captacao.steps;
+package captacao.vemser.dbccompany.steps;
 
-import captacao.pages.HomePage;
+import captacao.vemser.dbccompany.pages.HomePage;
 import org.junit.Test;
 
 public class HomeSteps extends BaseSteps {

@@ -1,6 +1,6 @@
-package captacao.steps;
+package captacao.vemser.dbccompany.steps;
 
-import captacao.util.Browser;
+import captacao.vemser.dbccompany.util.Browser;
 import org.junit.After;
 import org.junit.Before;
 

@@ -1,4 +1,4 @@
-package captacao.pages;
+package captacao.vemser.dbccompany.pages;
 
 import org.openqa.selenium.By;
 
