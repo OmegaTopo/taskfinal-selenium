@@ -3,7 +3,6 @@ package captacao.vemser.dbccompany.util;
 import captacao.vemser.dbccompany.steps.BaseSteps;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Elements extends BaseSteps {

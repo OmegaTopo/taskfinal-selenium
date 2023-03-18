@@ -2,15 +2,11 @@ package captacao.vemser.dbccompany.pages;
 
 import net.datafaker.Faker;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Locale;
 
-public class FormPage extends BasePage {
+public class InfoPage extends BasePage {
 
     private Faker faker = new Faker(new Locale("pt-BR"));
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
