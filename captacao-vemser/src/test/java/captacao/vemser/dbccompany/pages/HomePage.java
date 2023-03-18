@@ -7,6 +7,6 @@ public class HomePage extends BasePage{
 
 
     public void clicarBtnInscricao(){
-        click(btnInscricao);
+        clicar(btnInscricao);
     }
 }
