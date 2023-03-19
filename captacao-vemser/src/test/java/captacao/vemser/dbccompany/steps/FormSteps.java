@@ -199,4 +199,42 @@ public class FormSteps extends BaseSteps{
         Assert.assertTrue(campoExiste);
         Assert.assertEquals(msgErroCampoTrilha, textoExtraido);
     }
+    @Test
+    public void preencheCampoImportanteParaAVidaComSucesso() {
+
+        formPage.clicarNoCampoImportanteParaAVida();
+        formPage.preencherCampoImportanteParaAVida();
+        formPage.clicarEmEnviar();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroImportanteParaAVida();
+
+        Assert.assertFalse(campoExiste);
+    }
+    @Test
+    public void tentaAvancarSemPreencherCampoImportanteParaAVida() {
+        String msgErroImportanteParaAVida = "Campo obrigatório";
+
+        formPage.clicarNoCampoImportanteParaAVida();
+        formPage.clicarEmEnviar();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroImportanteParaAVida();
+        String textoExtraido = formPage.extraiTextoCampoErroImportanteParaAVida();
+
+        Assert.assertTrue(campoExiste);
+        Assert.assertEquals(msgErroImportanteParaAVida, textoExtraido);
+    }
+    @Test
+    public void tentaAvancarPreenchendoCampoImportanteParaAVidaComMenosDeDezCaracteres() {
+        String msgErroImportanteParaAVida = "São necessários 10 caracteres, no mínimo";
+
+        formPage.clicarNoCampoImportanteParaAVida();
+        formPage.preencherCampoImportanteParaAVidaComTextoPequeno();
+        formPage.clicarEmEnviar();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroImportanteParaAVida();
+        String textoExtraido = formPage.extraiTextoCampoErroImportanteParaAVida();
+
+        Assert.assertTrue(campoExiste);
+        Assert.assertEquals(msgErroImportanteParaAVida, textoExtraido);
+    }
 }
