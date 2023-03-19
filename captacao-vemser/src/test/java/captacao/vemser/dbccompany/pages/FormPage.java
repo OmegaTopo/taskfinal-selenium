@@ -26,6 +26,8 @@ public class FormPage extends BasePage{
     private static final By opcaoTrilhaBackend = By.cssSelector("input[value=\"BACKEND\"]");
     private static final By opcaoTrilhaQa = By.cssSelector("input[value=\"QA\"]");
     private static final By opcaoTrilhaFrontend = By.cssSelector("input[value=\"FRONTEND\"]");
+    private static final By campoImportanteParaAVida = By.cssSelector("[id=textarea-importante-candidato]");
+    private static final By campoErroImportanteParaAVida = By.cssSelector("[id=\"textarea-importante-candidato-helper-text\"]");
 
 
     public void marcarTurnoNoite(){
@@ -127,5 +129,30 @@ public class FormPage extends BasePage{
 
     public Boolean verificaSeOpcaoTrilhaFrontendEstaMarcada() {
         return verificaSeElementoEstaSelecionado(opcaoTrilhaFrontend);
+    }
+
+    public void clicarNoCampoImportanteParaAVida() {
+
+        clicar(campoImportanteParaAVida);
+    }
+
+    public void preencherCampoImportanteParaAVida() {
+
+        preencheCampo(campoImportanteParaAVida, faker.lorem().paragraph());
+        preencheCampo(campoImportanteParaAVida, faker.lorem().characters(100));
+    }
+
+    public Boolean verificaExistenciaCampoErroImportanteParaAVida() {
+        return verificaExistenciaElemento(campoErroImportanteParaAVida);
+    }
+
+    public String extraiTextoCampoErroImportanteParaAVida() {
+        return extraiTexto(campoErroImportanteParaAVida);
+    }
+
+    public void preencherCampoImportanteParaAVidaComTextoPequeno() {
+        String textoComQuatroCaracteres = "Nada";
+
+        preencheCampo(campoImportanteParaAVida, textoComQuatroCaracteres);
     }
 }
