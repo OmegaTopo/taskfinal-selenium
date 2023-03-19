@@ -16,6 +16,16 @@ public class FormPage extends BasePage{
     private static final By campoGenero = By.cssSelector("[id=s2-select-genero-candidato]");
     private static final By campoGeneroHomemCis = By.cssSelector("li.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.Mui-selected.MuiMenuItem-root.MuiMenuItem-gutters.Mui-selected.css-12kak8r");
     private static final By campoGeneroNaoBinario = By.cssSelector("li:nth-child(5)");
+    private static final By selecaoDeficiencia = By.cssSelector("[id=s2-select-deficiencia-candidato]");
+    private static final By selecaoDeficienciaSim = By.cssSelector("li:nth-child(2)");
+    private static final By selecaoDeficienciaNao = By.cssSelector("li.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.Mui-selected.MuiMenuItem-root.MuiMenuItem-gutters.Mui-selected.css-12kak8r");
+    private static final By campoDeficiencia = By.cssSelector("[id=s2-candidato-deficiencia-descricao]");
+    private static final By selecionarProvaTecnicaSim = By.cssSelector("#s2-candidato-prova-sim > span.MuiButtonBase-root.MuiRadio-root.MuiRadio-colorPrimary.PrivateSwitchBase-root.MuiRadio-root.MuiRadio-colorPrimary.MuiRadio-root.MuiRadio-colorPrimary.css-kf7w3t > input");
+    private static final By selecionarProvaTecnicaNao = By.cssSelector("#s2-candidato-prova-nao > span.MuiButtonBase-root.MuiRadio-root.MuiRadio-colorPrimary.PrivateSwitchBase-root.MuiRadio-root.MuiRadio-colorPrimary.Mui-checked.MuiRadio-root.MuiRadio-colorPrimary.css-kf7w3t > input");
+    private static final By campoGitHub = By.cssSelector("[id=s2-candidato-github]");
+    private static final By btnPrintConfiguracao = By.cssSelector("[id=botao-configuracoes]");
+    private static final By btnEnviar = By.cssSelector("[id=s2-botao-submit]");
+
 
 
     public void marcarTurnoNoite(){
@@ -35,6 +45,33 @@ public class FormPage extends BasePage{
     public void selecionarGeneroNaoBinario(){
         clicar(campoGenero);
         clicar(campoGeneroNaoBinario);
+    }
+    public void selecionarDeficiencia(){
+        clicar(selecaoDeficiencia);
+    }
+    public void selecionarDeficienciaSim(){
+        clicar(selecaoDeficienciaSim);
+    }
+    public void selecionarDeficienciaNao(){
+        clicar(selecaoDeficienciaNao);
+    }
+    public void definirDeficienciaSurdez(){
+        preencheCampo(campoDeficiencia, "Surdez");
+    }
+    public void selecionarSimProvaTecnica(){
+        clicar(selecionarProvaTecnicaSim);
+    }
+    public void selecionarNaoProvaTecnica(){
+        clicar(selecionarProvaTecnicaNao);
+    }
+    public void digitarLinkGitHub(){
+        preencheCampo(campoGitHub, "https://github.com/");
+    }
+    public void enviarPrintConfiguracoes(){
+        clicar(btnPrintConfiguracao);
+    }
+    public void enviarFormulario(){
+        clicar(btnEnviar);
     }
 
 

@@ -46,15 +46,51 @@ public class FormSteps extends BaseSteps{
     public void marcarGeneroNaoBinario(){
         formPage.selecionarGeneroNaoBinario();
     }
+    @Test
+    public void selecionarDeficienciaSurdez(){
+        formPage.selecionarDeficiencia();
+        formPage.selecionarDeficienciaSim();
+        formPage.definirDeficienciaSurdez();
+    }
+    @Test
+    public void selecionarDeficienciaNao(){
+        formPage.selecionarDeficiencia();
+        formPage.selecionarDeficienciaNao();
+    }
+    @Test
+    public void selecionarProvaTecnicaSim(){
+        formPage.selecionarSimProvaTecnica();
+    }
+    @Test
+    public void selecionarProvaTecnicaNao(){
+        formPage.selecionarNaoProvaTecnica();
+    }
 
+    @Test
+    public void enviarGitHub(){
+        formPage.digitarLinkGitHub();
+    }
+    @Test
+    public void enviarPrintConfiguracao(){
+        formPage.enviarPrintConfiguracoes();
+    }
 
-
+    @Test
+    public void enviarFormularioComSucesso(){
+        formPage.enviarFormulario();
+    }
 
     @Test
     public void avancar(){
         formPage.marcarTurnoNoite();
         formPage.marcarInglesFluente();
         formPage.selecionarGeneroNaoBinario();
+        formPage.selecionarDeficiencia();
+        formPage.selecionarDeficienciaNao();
+        formPage.selecionarSimProvaTecnica();
+        formPage.digitarLinkGitHub();
+//        formPage.enviarPrintConfiguracoes();
+        formPage.enviarFormulario();
     }
 
 
