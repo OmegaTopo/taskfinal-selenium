@@ -79,6 +79,16 @@ public class InfoSteps extends BaseSteps {
     @Test
     public void selecionarEstadoPara(){
         infoPage.selecionarEstadoPA();
+
+        String validador = infoPage.verificarCampoEstado();
+        Assert.assertEquals("Pará",validador);
+    }
+    @Test
+    public void selecionarEstadoRS(){
+        infoPage.selecionarEstadoRS();
+
+        String validador = infoPage.verificarCampoEstado();
+        Assert.assertEquals("Rio Grande do Sul",validador);
     }
     @Test
     public void avancarParaFormularioComSucesso(){

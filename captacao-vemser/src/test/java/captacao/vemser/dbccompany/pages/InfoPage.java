@@ -20,6 +20,7 @@ public class InfoPage extends BasePage {
     private static final By campoCidade = By.cssSelector("[id=step-1-cidade]");
     private static final By campoEstado = By.cssSelector("[id=step-1-estado]");
     private static final By campoEstadoPA = By.cssSelector("li:nth-child(14)");
+    private static final By campoEstadoRS = By.cssSelector("li:nth-child(21)");
     private static final By campoNeurodiversidade = By.cssSelector("div:nth-child(9) > div > div > svg");
     private static final By btnProximo = By.cssSelector("[id=step-1-enviar]");
     private static final By campoErroRG = By.cssSelector("p[id=\"step-1-rg-helper-text\"]");
@@ -87,6 +88,14 @@ public class InfoPage extends BasePage {
     public void selecionarEstadoPA() {
         clicar(campoEstado);
         clicar(campoEstadoPA);
+    }
+    public void selecionarEstadoRS() {
+        clicar(campoEstado);
+        clicar(campoEstadoRS);
+    }
+    public String verificarCampoEstado(){
+        String texto = extraiTexto(campoEstado);
+        return texto;
     }
     public void preencherCampoNeurodiversidade() {
         clicar(campoNeurodiversidade);
