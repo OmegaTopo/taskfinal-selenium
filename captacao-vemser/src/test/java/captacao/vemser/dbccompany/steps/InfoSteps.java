@@ -1,10 +1,12 @@
 package captacao.vemser.dbccompany.steps;
 
+import captacao.vemser.dbccompany.pages.BasePage;
 import captacao.vemser.dbccompany.pages.InfoPage;
 import captacao.vemser.dbccompany.pages.HomePage;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 
 
 public class InfoSteps extends BaseSteps {
@@ -90,6 +92,114 @@ public class InfoSteps extends BaseSteps {
         String validador = infoPage.verificarCampoEstado();
         Assert.assertEquals("Rio Grande do Sul",validador);
     }
+
+    @Test
+    public void preencherEmailCorretamente(){
+        infoPage.preencherEmailValido();
+        infoPage.clicarEmProximo();
+
+        Boolean campoExiste = infoPage.verificaExistenciaCampoErroEmail();
+        Assert.assertFalse(campoExiste);
+    }
+
+    @Test
+    public void preencherEmailIncorretamente(){
+        infoPage.preencherEmailInvalido();
+        infoPage.clicarEmProximo();
+
+        Boolean campoExiste = infoPage.verificaExistenciaCampoErroEmail();
+        Assert.assertTrue(campoExiste);
+    }
+
+    @Test
+    public void deixarEmailEmBranco(){
+        infoPage.clicarEmProximo();
+
+        String validador = BasePage.extraiTexto(By.cssSelector("[id=step-1-email-helper-text]"));
+        Assert.assertEquals("O email é obrigatório", validador);
+    }
+
+    @Test
+    public void preencheCelularCorretamente(){
+        infoPage.preencherCampoCelularValido();
+        infoPage.clicarEmProximo();
+
+        Boolean campoExiste = infoPage.verificaExistenciaCampoErroCelular();
+        Assert.assertFalse(campoExiste);
+    }
+
+    @Test
+    public void preenceCelularIncorretamente(){
+        infoPage.preencheCampoTelefoneInvalido();
+        infoPage.clicarEmProximo();
+
+        String validador = BasePage.extraiTexto(By.cssSelector("[id=step-1-telefone-helper-text]"));
+        Assert.assertEquals("O telefone deve ser um número válido no formato (99)99999-9999", validador);
+    }
+
+    @Test
+    public void deixarTelefoneEmBranco(){
+        infoPage.clicarEmProximo();
+
+        String validador = BasePage.extraiTexto(By.cssSelector("[id=step-1-telefone-helper-text]"));
+        Assert.assertEquals("O celular é obrigatório", validador);
+    }
+
+    @Test
+    public void preencheCampoCidadeCorretamente(){
+        infoPage.preencherCampoCidadeValido();
+        infoPage.clicarEmProximo();
+
+        Boolean campoExiste = infoPage.verificaExistenciaCampoErroCidade();
+        Assert.assertFalse(campoExiste);
+    }
+
+    @Test
+    public void preencheCampoCidadeIncorretamente(){
+        infoPage.preencherCampoCidadeInvalido();
+        infoPage.clicarEmProximo();
+
+        String validador = BasePage.extraiTexto(By.cssSelector("[id=step-1-cidade-helper-text]"));
+        Assert.assertEquals("A Cidade deve ter apenas letras e espaços", validador);
+    }
+
+    @Test
+    public void deixaCampoCidadeEmBranco(){
+        infoPage.clicarEmProximo();
+
+        String validador = BasePage.extraiTexto(By.cssSelector("[id=step-1-cidade-helper-text]"));
+        Assert.assertEquals("A cidade é obrigatória", validador);
+    }
+
+    @Test
+    public void neurodiversidadeNao(){
+        infoPage.preencherCampoNeurodiversidadeNao();
+        infoPage.clicarEmProximo();
+
+        Boolean campoExiste = infoPage.verificaExistenciaCampoNeuro();
+        Assert.assertFalse(campoExiste);
+    }
+
+    @Test
+    public void neurodiversidadeSim(){
+        infoPage.preencherCampoNeurodiversidadeSim();
+        infoPage.preencherCampoNeurodiversidadeValido();
+        infoPage.clicarEmProximo();
+
+        Boolean proximoSite = infoPage.verificaExistenciaProximaPagina();
+        Assert.assertFalse(proximoSite);
+    }
+
+    @Test
+    public void neurodiversidadeSimInvalido(){
+        infoPage.preencherCampoNeurodiversidadeSim();
+        infoPage.preencherCampoNeurodiversidadeInvalido();
+        infoPage.clicarEmProximo();
+
+        Boolean proximoSite = infoPage.verificaExistenciaProximaPagina();
+        Assert.assertFalse(proximoSite);
+    }
+
     @Test
     public void avancarParaFormularioComSucesso(){
         infoPage.preencherNomeValido();
@@ -100,8 +210,12 @@ public class InfoSteps extends BaseSteps {
         infoPage.preencherCampoDataDeNascimentoValido();
         infoPage.preencherCampoCidadeValido();
         infoPage.selecionarEstadoPA();
+<<<<<<< HEAD
         infoPage.preencherCampoNeurodiversidade();
         infoPage.clicarEmProximo();
+=======
+        infoPage.preencherCampoNeurodiversidadeNao();
+>>>>>>> 373e7f8fbc789db78b927bc765d673b22c5bea3c
     }
 
 
