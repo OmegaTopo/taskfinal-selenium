@@ -71,6 +71,8 @@ public class FormPage extends BasePage {
     private static final By opcaoTrilhaFrontend = By.cssSelector("input[value=\"FRONTEND\"]");
     private static final By campoImportanteParaAVida = By.cssSelector("[id=textarea-importante-candidato]");
     private static final By campoErroImportanteParaAVida = By.cssSelector("[id=\"textarea-importante-candidato-helper-text\"]");
+    private static final By btnInteresseDBCSim = By.cssSelector("#s2-candidato-efetivacao-sim ");
+    private static final By btnInteresseDBCNao = By.cssSelector("#s2-candidato-efetivacao-nao ");
     private static final By opcaoNaoDisponibilidadeParaEstudo = By.cssSelector("label[id=\"s2-candidato-disponibilidade-nao\"] input[value=\"F\"]");
     private static final By opcaoSimDisponibilidadeParaEstudo = By.cssSelector("label[id=\"s2-candidato-disponibilidade-sim\"] input[value=\"T\"]");
 
@@ -399,6 +401,14 @@ public class FormPage extends BasePage {
         preencheCampo(campoImportanteParaAVida, textoComQuatroCaracteres);
     }
 
+    public void selecionarInteresseDBCSim(){
+        clicar(btnInteresseDBCSim);
+    }
+
+    public void selecionarInteresseDBCNao(){
+        clicar(btnInteresseDBCNao);
+    }
+    
     public Boolean verificaOpcaoNaoCampoDisponibilidadeDeEstudoEstaMarcada() {
         return verificaSeElementoEstaSelecionado(opcaoNaoDisponibilidadeParaEstudo);
     }
