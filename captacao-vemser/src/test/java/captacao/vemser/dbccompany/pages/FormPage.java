@@ -38,6 +38,10 @@ public class FormPage extends BasePage{
         clicar(campoNivelIngles);
         clicar(campoInglesFluente);
     }
+    public String validarCampoIngles(){
+        String texto = extraiTexto(campoNivelIngles);
+        return texto;
+    }
     public void selecionarGeneroHomemCis(){
         clicar(campoGenero);
         clicar(campoGeneroHomemCis);
@@ -45,6 +49,10 @@ public class FormPage extends BasePage{
     public void selecionarGeneroNaoBinario(){
         clicar(campoGenero);
         clicar(campoGeneroNaoBinario);
+    }
+    public String validarCampoGenero(){
+        String texto = extraiTexto(campoGenero);
+        return texto;
     }
     public void selecionarDeficiencia(){
         clicar(selecaoDeficiencia);
@@ -58,6 +66,10 @@ public class FormPage extends BasePage{
     public void definirDeficienciaSurdez(){
         preencheCampo(campoDeficiencia, "Surdez");
     }
+    public String validarCampoDeficiencia(){
+        String texto = extraiTexto(campoDeficiencia);
+        return texto;
+    }
     public void selecionarSimProvaTecnica(){
         clicar(selecionarProvaTecnicaSim);
     }
@@ -66,6 +78,9 @@ public class FormPage extends BasePage{
     }
     public void digitarLinkGitHub(){
         preencheCampo(campoGitHub, "https://github.com/");
+    }
+    public void digitarLinkGitHubEmBranco(){
+        preencheCampo(campoGitHub, " ");
     }
     public void enviarPrintConfiguracoes(){
         clicar(btnPrintConfiguracao);
