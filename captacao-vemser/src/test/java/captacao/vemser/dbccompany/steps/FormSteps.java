@@ -115,4 +115,26 @@ public class FormSteps extends BaseSteps{
 
         Assert.assertTrue(campoExiste);
     }
+    @Test
+    public void marcarCampoOrientacaoSexualComOpcaoPansexual() {
+        String textoPansexual = "Pansexual";
+
+        formPage.clicarNoCampoOrientacaoSexual();
+        formPage.clicarNaOpcaoOrientacaoPansexual();
+
+        String textoExtraido = formPage.extraiTextoCampoOrientacaoSexual();
+
+        Assert.assertTrue(textoExtraido.contains(textoPansexual));
+    }
+    @Test
+    public void marcarCampoOrientacaoSexualComOpcaoOutro() {
+        String textoOutro = "Outro";
+
+        formPage.clicarNoCampoOrientacaoSexual();
+        formPage.clicarNaOpcaoOrientacaoOutro();
+
+        String textoExtraido = formPage.extraiTextoCampoOrientacaoSexual();
+
+        Assert.assertTrue(textoExtraido.contains(textoOutro));
+    }
 }
