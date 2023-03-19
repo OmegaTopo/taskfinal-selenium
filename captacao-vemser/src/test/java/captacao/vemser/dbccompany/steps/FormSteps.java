@@ -137,4 +137,66 @@ public class FormSteps extends BaseSteps{
 
         Assert.assertTrue(textoExtraido.contains(textoOutro));
     }
+    @Test
+    public void marcarAOpcaoTrilhaBackendComSucesso() {
+
+        formPage.clicaOpcaoTrilhaBackend();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroTrilha();
+        Boolean campoMarcado = formPage.verificaSeOpcaoTrilhaBackendEstaMarcada();
+
+        Assert.assertFalse(campoExiste);
+        Assert.assertTrue(campoMarcado);
+    }
+    @Test
+    public void marcarAOpcaoTrilhaQaComSucesso() {
+
+        formPage.clicaOpcaoTrilhaQa();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroTrilha();
+        Boolean campoMarcado = formPage.verificaSeOpcaoTrilhaQaEstaMarcada();
+
+        Assert.assertFalse(campoExiste);
+        Assert.assertTrue(campoMarcado);
+    }
+    @Test
+    public void marcarAOpcaoTrilhaFrontendComSucesso() {
+
+        formPage.clicaOpcaoTrilhaFrontend();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroTrilha();
+        Boolean campoMarcado = formPage.verificaSeOpcaoTrilhaFrontendEstaMarcada();
+
+        Assert.assertFalse(campoExiste);
+        Assert.assertTrue(campoMarcado);
+    }
+    @Test
+    public void marcarTodasAsTrilhasComSucesso() {
+
+        formPage.clicaOpcaoTrilhaBackend();
+        formPage.clicaOpcaoTrilhaQa();
+        formPage.clicaOpcaoTrilhaFrontend();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroTrilha();
+        Boolean campoMarcadoBackend = formPage.verificaSeOpcaoTrilhaFrontendEstaMarcada();
+        Boolean campoMarcadoQa = formPage.verificaSeOpcaoTrilhaQaEstaMarcada();
+        Boolean campoMarcadoFrontend = formPage.verificaSeOpcaoTrilhaFrontendEstaMarcada();
+
+        Assert.assertFalse(campoExiste);
+        Assert.assertTrue(campoMarcadoBackend);
+        Assert.assertTrue(campoMarcadoQa);
+        Assert.assertTrue(campoMarcadoFrontend);
+    }
+    @Test
+    public void tentaAvancarSemMarcarNenhumaTrilha() {
+        String msgErroCampoTrilha = "A escolha de uma trilha é obrigatória";
+
+        formPage.clicarEmEnviar();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroTrilha();
+        String textoExtraido = formPage.extraiTextoCampoErroTrilha();
+
+        Assert.assertTrue(campoExiste);
+        Assert.assertEquals(msgErroCampoTrilha, textoExtraido);
+    }
 }
