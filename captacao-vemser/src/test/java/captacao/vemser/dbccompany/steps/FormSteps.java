@@ -24,9 +24,9 @@ public class FormSteps extends BaseSteps{
         infoPage.preencherCampoDataDeNascimentoValido();
         infoPage.preencherCampoCidadeValido();
         infoPage.selecionarEstadoPA();
+        infoPage.preencherCampoNeurodiversidadeNao();
         infoPage.clicarEmProximo();
     }
-
     @Test
     public void marcarTurnoNoite(){
         formPage.marcarTurnoNoite();
@@ -36,6 +36,75 @@ public class FormSteps extends BaseSteps{
         formPage.marcarTurnoTarde();
     }
     @Test
+    public void marcarFluenteEmIngles(){
+        formPage.marcarInglesFluente();
+
+        String validador = formPage.validarCampoIngles();
+        Assert.assertEquals("Fluente",validador);
+    }
+    @Test
+    public void marcarGeneroHomemCis(){
+        formPage.selecionarGeneroHomemCis();
+        String validador = formPage.validarCampoGenero();
+        Assert.assertEquals("Homem cisgênero",validador);
+    }
+    @Test
+    public void marcarGeneroNaoBinario(){
+        formPage.selecionarGeneroNaoBinario();
+        String validador = formPage.validarCampoGenero();
+        Assert.assertEquals("Não binário",validador);
+    }
+    @Test
+    public void selecionarDeficienciaSurdez(){
+        formPage.selecionarDeficiencia();
+        formPage.selecionarDeficienciaSim();
+        formPage.definirDeficienciaSurdez();
+
+        String validador = formPage.validarCampoDeficiencia();
+        Assert.assertEquals("Surdez",validador);
+    }
+    @Test
+    public void selecionarDeficienciaNao(){
+        formPage.selecionarDeficiencia();
+        formPage.selecionarDeficienciaNao();
+    }
+    @Test
+    public void selecionarProvaTecnicaSim(){
+        formPage.selecionarSimProvaTecnica();
+    }
+    @Test
+    public void selecionarProvaTecnicaNao(){
+        formPage.selecionarNaoProvaTecnica();
+    }
+
+    @Test
+    public void enviarGitHub(){
+        formPage.digitarLinkGitHub();
+    }
+    @Test
+    public void enviarGitHubEmBranco(){
+        formPage.digitarLinkGitHubEmBranco();
+        formPage.enviarFormulario();
+    }
+    @Test
+    public void enviarPrintConfiguracao(){
+        formPage.enviarPrintConfiguracoes();
+        formPage.enviarFormulario();
+    }
+
+    @Test
+    public void avancar(){
+        formPage.marcarTurnoNoite();
+        formPage.marcarInglesFluente();
+        formPage.selecionarGeneroNaoBinario();
+        formPage.selecionarDeficiencia();
+        formPage.selecionarDeficienciaNao();
+        formPage.selecionarSimProvaTecnica();
+        formPage.digitarLinkGitHub();
+//      formPage.enviarPrintConfiguracoes();
+        formPage.enviarFormulario();
+    }
+
     public void preencherMatriculadoComRespostaPositiva() {
 
         formPage.marcarCampoMatriculadoSim();
