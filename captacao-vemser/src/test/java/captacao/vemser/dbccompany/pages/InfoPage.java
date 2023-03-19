@@ -44,7 +44,6 @@ public class InfoPage extends BasePage {
     }
 
     public void preencherEmailValido() {
-
         preencheCampo(campoEmail, faker.internet().emailAddress());
     }
 
@@ -74,35 +73,28 @@ public class InfoPage extends BasePage {
     }
 
     public void preencherCampoCelularValido() {
-
         preencheCampo(campoCelular, faker.phoneNumber().toString());
     }
 
     public void preencherCampoDataDeNascimentoValido() {
-
         preencheCampo(campoDataDeNascimento, dateFormat.format(faker.date().birthday()));
     }
 
     public void preencherCampoCidadeValido() {
         String cidadeValida = "Tailândia";
-
         preencheCampo(campoCidade, cidadeValida);
     }
-
     public void selecionarEstadoPA() {
         clicar(campoEstado);
         clicar(campoEstadoPA);
     }
     public void preencherCampoNeurodiversidade() {
-
         clicar(campoNeurodiversidade);
         clicar(opcaoNeurodiversidadeNao);
     }
-
     public void clicarEmProximo() {
         clicar(btnProximo);
     }
-
     public Boolean verificaExistenciaCampoErroRG() {
 
         return verificaExistenciaElemento(campoErroRG);
