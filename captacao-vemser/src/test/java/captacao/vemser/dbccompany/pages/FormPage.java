@@ -75,6 +75,9 @@ public class FormPage extends BasePage{
     private static final By opcaoTrilhaFrontend = By.cssSelector("input[value=\"FRONTEND\"]");
     private static final By campoImportanteParaAVida = By.cssSelector("[id=textarea-importante-candidato]");
     private static final By campoErroImportanteParaAVida = By.cssSelector("[id=\"textarea-importante-candidato-helper-text\"]");
+    private static final By btnInteresseDBCSim = By.cssSelector("#s2-candidato-efetivacao-sim ");
+    private static final By btnInteresseDBCNao = By.cssSelector("#s2-candidato-efetivacao-nao ");
+
 
     public void marcarTurnoNoite(){
         clicar(campoTurnoNoite);
@@ -329,5 +332,13 @@ public class FormPage extends BasePage{
         String textoComQuatroCaracteres = "Nada";
 
         preencheCampo(campoImportanteParaAVida, textoComQuatroCaracteres);
+    }
+
+    public void selecionarInteresseDBCSim(){
+        clicar(btnInteresseDBCSim);
+    }
+
+    public void selecionarInteresseDBCNao(){
+        clicar(btnInteresseDBCNao);
     }
 }
