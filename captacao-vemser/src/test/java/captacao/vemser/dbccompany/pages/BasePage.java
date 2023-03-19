@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 
 public class BasePage extends Elements {
-    public static void clicar (By seletor){
+    public static void clicar(By seletor){
         aguardaCarregamentoElemento(seletor);
 
         buscaElemento(seletor).click();
@@ -39,10 +39,10 @@ public class BasePage extends Elements {
         return buscaElemento(seletor).isDisplayed();
     }
 
-    public static Boolean verificaSeElementoEstaAtivo(By seletor) {
+    public static Boolean verificaSeElementoEstaSelecionado(By seletor) {
         aguardaCarregamentoElemento(seletor);
 
-        return verificaSeElementoApareceNaTela(seletor);
+        return buscaElemento(seletor).isSelected();
     }
 
     public static Boolean verificaExistenciaElemento(By seletor) {

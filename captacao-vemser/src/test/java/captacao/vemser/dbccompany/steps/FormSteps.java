@@ -26,9 +26,9 @@ public class FormSteps extends BaseSteps{
         infoPage.preencherCampoDataDeNascimentoValido();
         infoPage.preencherCampoCidadeValido();
         infoPage.selecionarEstadoPA();
+        infoPage.preencherCampoNeurodiversidadeNao();
         infoPage.clicarEmProximo();
     }
-
     @Test
     public void marcarTurnoNoite(){
         formPage.marcarTurnoNoite();
@@ -37,6 +37,277 @@ public class FormSteps extends BaseSteps{
     public void marcarTurnoATarde(){
         formPage.marcarTurnoTarde();
     }
+    @Test
+    public void marcarFluenteEmIngles(){
+        formPage.marcarInglesFluente();
+
+        String validador = formPage.validarCampoIngles();
+        Assert.assertEquals("Fluente",validador);
+    }
+    @Test
+    public void marcarGeneroHomemCis(){
+        formPage.selecionarGeneroHomemCis();
+        String validador = formPage.validarCampoGenero();
+        Assert.assertEquals("Homem cisgênero",validador);
+    }
+    @Test
+    public void marcarGeneroNaoBinario(){
+        formPage.selecionarGeneroNaoBinario();
+        String validador = formPage.validarCampoGenero();
+        Assert.assertEquals("Não binário",validador);
+    }
+    @Test
+    public void selecionarDeficienciaSurdez(){
+        formPage.selecionarDeficiencia();
+        formPage.selecionarDeficienciaSim();
+        formPage.definirDeficienciaSurdez();
+
+        String validador = formPage.validarCampoDeficiencia();
+        Assert.assertEquals("Surdez",validador);
+    }
+    @Test
+    public void selecionarDeficienciaNao(){
+        formPage.selecionarDeficiencia();
+        formPage.selecionarDeficienciaNao();
+    }
+    @Test
+    public void selecionarProvaTecnicaSim(){
+        formPage.selecionarSimProvaTecnica();
+    }
+    @Test
+    public void selecionarProvaTecnicaNao(){
+        formPage.selecionarNaoProvaTecnica();
+    }
+
+    @Test
+    public void enviarGitHub(){
+        formPage.digitarLinkGitHub();
+    }
+    @Test
+    public void enviarGitHubEmBranco(){
+        formPage.digitarLinkGitHubEmBranco();
+        formPage.enviarFormulario();
+    }
+    @Test
+    public void enviarPrintConfiguracao(){
+        formPage.enviarPrintConfiguracoes();
+        formPage.enviarFormulario();
+    }
+
+    @Test
+    public void avancar(){
+        formPage.marcarTurnoNoite();
+        formPage.marcarInglesFluente();
+        formPage.selecionarGeneroNaoBinario();
+        formPage.selecionarDeficiencia();
+        formPage.selecionarDeficienciaNao();
+        formPage.selecionarSimProvaTecnica();
+        formPage.digitarLinkGitHub();
+//      formPage.enviarPrintConfiguracoes();
+        formPage.enviarFormulario();
+    }
+
+    public void preencherMatriculadoComRespostaPositiva() {
+
+        formPage.marcarCampoMatriculadoSim();
+        formPage.clicarEmEnviar();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroMatriculado();
+
+        Assert.assertFalse(campoExiste);
+    }
+    @Test
+    public void preencherMatriculadoComRespostaNegativa() {
+        String msgErroMatriculado = "Devido as restrições impostas pelas leis brasileiras, somente alunos que possuem vínculo" +
+                " com uma instituição de ensino podem se candidatar às vagas de estágio.";
+
+        formPage.marcarCampoMatriculadoNao();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroMatriculado();
+        Boolean btnExiste = formPage.verificaExistenciaBotaoEnviar();
+        String textoExtraido = formPage.extraiTextoCampoErroMatriculado();
+
+        Assert.assertTrue(campoExiste);
+        Assert.assertEquals(msgErroMatriculado, textoExtraido);
+        Assert.assertFalse(btnExiste);
+    }
+    @Test
+    public void opcaoSimDoCampoMatriculadoEMarcadaPorPadrao() {
+
+        Boolean campoSelecionado = formPage.verificaOpcaoSimCampoMatriculadoEstaMarcada();
+
+        Assert.assertTrue(campoSelecionado);
+    }
+    @Test
+    public void preencherCursoComStringValida() {
+
+        formPage.preencheCampoCursoComStringValida();
+        formPage.clicarEmEnviar();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroCurso();
+
+        Assert.assertFalse(campoExiste);
+    }
+    @Test
+    public void enviarFormularioComCursoVazio() {
+        String msgErroCampoCurso = "O Curso deve ter apenas letras e espaços";
+
+        formPage.clicarNoCampoCurso();
+        formPage.clicarEmEnviar();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroCurso();
+        String textoExtraido = formPage.extraiTextoCampoErroCurso();
+
+        Assert.assertTrue(campoExiste);
+        Assert.assertEquals(msgErroCampoCurso, textoExtraido);
+    }
+    @Test
+    public void preencherCursoComCaracteresInvalidos() {
+        String msgErroCampoCurso = "O Curso deve ter apenas letras e espaços";
+
+        formPage.clicarNoCampoCurso();
+        formPage.preencherCampoCursoComCaracteresInvalidos();
+        formPage.clicarEmEnviar();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroCurso();
+        String textoExtraido = formPage.extraiTextoCampoErroCurso();
+
+        Assert.assertTrue(campoExiste);
+        Assert.assertEquals(msgErroCampoCurso, textoExtraido);
+    }
+    @Test
+    public void preencherCursoComStringDeMaisDe255Caracteres() {
+
+        formPage.clicarNoCampoCurso();
+        formPage.preencherCampoCursoComStringDeMaisDe255Caracteres();
+        formPage.clicarEmEnviar();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroCurso();
+
+        Assert.assertTrue(campoExiste);
+    }
+    @Test
+    public void marcarCampoOrientacaoSexualComOpcaoPansexual() {
+        String textoPansexual = "Pansexual";
+
+        formPage.clicarNoCampoOrientacaoSexual();
+        formPage.clicarNaOpcaoOrientacaoPansexual();
+
+        String textoExtraido = formPage.extraiTextoCampoOrientacaoSexual();
+
+        Assert.assertTrue(textoExtraido.contains(textoPansexual));
+    }
+    @Test
+    public void marcarCampoOrientacaoSexualComOpcaoOutro() {
+        String textoOutro = "Outro";
+
+        formPage.clicarNoCampoOrientacaoSexual();
+        formPage.clicarNaOpcaoOrientacaoOutro();
+
+        String textoExtraido = formPage.extraiTextoCampoOrientacaoSexual();
+
+        Assert.assertTrue(textoExtraido.contains(textoOutro));
+    }
+    @Test
+    public void marcarAOpcaoTrilhaBackendComSucesso() {
+
+        formPage.clicaOpcaoTrilhaBackend();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroTrilha();
+        Boolean campoMarcado = formPage.verificaSeOpcaoTrilhaBackendEstaMarcada();
+
+        Assert.assertFalse(campoExiste);
+        Assert.assertTrue(campoMarcado);
+    }
+    @Test
+    public void marcarAOpcaoTrilhaQaComSucesso() {
+
+        formPage.clicaOpcaoTrilhaQa();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroTrilha();
+        Boolean campoMarcado = formPage.verificaSeOpcaoTrilhaQaEstaMarcada();
+
+        Assert.assertFalse(campoExiste);
+        Assert.assertTrue(campoMarcado);
+    }
+    @Test
+    public void marcarAOpcaoTrilhaFrontendComSucesso() {
+
+        formPage.clicaOpcaoTrilhaFrontend();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroTrilha();
+        Boolean campoMarcado = formPage.verificaSeOpcaoTrilhaFrontendEstaMarcada();
+
+        Assert.assertFalse(campoExiste);
+        Assert.assertTrue(campoMarcado);
+    }
+    @Test
+    public void marcarTodasAsTrilhasComSucesso() {
+
+        formPage.clicaOpcaoTrilhaBackend();
+        formPage.clicaOpcaoTrilhaQa();
+        formPage.clicaOpcaoTrilhaFrontend();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroTrilha();
+        Boolean campoMarcadoBackend = formPage.verificaSeOpcaoTrilhaFrontendEstaMarcada();
+        Boolean campoMarcadoQa = formPage.verificaSeOpcaoTrilhaQaEstaMarcada();
+        Boolean campoMarcadoFrontend = formPage.verificaSeOpcaoTrilhaFrontendEstaMarcada();
+
+        Assert.assertFalse(campoExiste);
+        Assert.assertTrue(campoMarcadoBackend);
+        Assert.assertTrue(campoMarcadoQa);
+        Assert.assertTrue(campoMarcadoFrontend);
+    }
+    @Test
+    public void tentaAvancarSemMarcarNenhumaTrilha() {
+        String msgErroCampoTrilha = "A escolha de uma trilha é obrigatória";
+
+        formPage.clicarEmEnviar();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroTrilha();
+        String textoExtraido = formPage.extraiTextoCampoErroTrilha();
+
+        Assert.assertTrue(campoExiste);
+        Assert.assertEquals(msgErroCampoTrilha, textoExtraido);
+    }
+    @Test
+    public void preencheCampoImportanteParaAVidaComSucesso() {
+
+        formPage.clicarNoCampoImportanteParaAVida();
+        formPage.preencherCampoImportanteParaAVida();
+        formPage.clicarEmEnviar();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroImportanteParaAVida();
+
+        Assert.assertFalse(campoExiste);
+    }
+    @Test
+    public void tentaAvancarSemPreencherCampoImportanteParaAVida() {
+        String msgErroImportanteParaAVida = "Campo obrigatório";
+
+        formPage.clicarNoCampoImportanteParaAVida();
+        formPage.clicarEmEnviar();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroImportanteParaAVida();
+        String textoExtraido = formPage.extraiTextoCampoErroImportanteParaAVida();
+
+        Assert.assertTrue(campoExiste);
+        Assert.assertEquals(msgErroImportanteParaAVida, textoExtraido);
+    }
+    @Test
+    public void tentaAvancarPreenchendoCampoImportanteParaAVidaComMenosDeDezCaracteres() {
+        String msgErroImportanteParaAVida = "São necessários 10 caracteres, no mínimo";
+
+        formPage.clicarNoCampoImportanteParaAVida();
+        formPage.preencherCampoImportanteParaAVidaComTextoPequeno();
+        formPage.clicarEmEnviar();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroImportanteParaAVida();
+        String textoExtraido = formPage.extraiTextoCampoErroImportanteParaAVida();
+
+        Assert.assertTrue(campoExiste);
+        Assert.assertEquals(msgErroImportanteParaAVida, textoExtraido);
+        }
 
     @Test
     public void preencherInstituicaoCorretamente(){
