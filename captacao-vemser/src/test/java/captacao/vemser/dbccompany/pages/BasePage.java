@@ -39,10 +39,10 @@ public class BasePage extends Elements {
         return buscaElemento(seletor).isDisplayed();
     }
 
-    public static Boolean verificaSeElementoEstaAtivo(By seletor) {
+    public static Boolean verificaSeElementoEstaSelecionado(By seletor) {
         aguardaCarregamentoElemento(seletor);
 
-        return verificaSeElementoApareceNaTela(seletor);
+        return buscaElemento(seletor).isSelected();
     }
 
     public static Boolean verificaExistenciaElemento(By seletor) {
