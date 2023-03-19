@@ -63,8 +63,25 @@ public class InfoPage extends BasePage {
         clicar(campoRG);
         preencheCampo(campoRG, rgValido);
     }
-    public void preencherRGEmBranco() {
+    public void preencherRGInvalido() {
+        String rgInvalido = "rgInvalido";
 
+        clicar(campoRG);
+        preencheCampo(campoRG, rgInvalido);
+    }
+    public void preencherRGComCaracteresInvalidos() {
+        String caracteresInvalidos = "++--*/*";
+
+        clicar(campoRG);
+        preencheCampo(campoRG, caracteresInvalidos);
+    }
+    public String extraiTextoCampoRG() {
+
+        return extraiTexto(campoRG);
+    }
+    public String extraiTextoCampoErroRG() {
+
+        return extraiTexto(campoErroRG);
     }
     public void preencherCPFValido() {
         clicar(campoCPF);

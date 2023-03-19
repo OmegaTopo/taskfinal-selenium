@@ -28,6 +28,43 @@ public class InfoSteps extends BaseSteps {
         Assert.assertFalse(campoExiste);
     }
     @Test
+    public void tentaAvancarSemPreencherRG() {
+        String textoErroRG = "O RG é obrigatório";
+
+        infoPage.clicarEmProximo();
+
+        Boolean campoExiste = infoPage.verificaExistenciaCampoErroRG();
+
+        String textoExtraido = "";
+
+        if (campoExiste) {
+            textoExtraido = infoPage.extraiTextoCampoErroRG();
+        }
+
+        Assert.assertTrue(campoExiste);
+        Assert.assertEquals(textoErroRG, textoExtraido);
+    }
+    @Test
+    public void tentaAvancarPreenchendoRGInvalido() {
+
+        infoPage.preencherRGInvalido();
+        infoPage.clicarEmProximo();
+
+        Boolean campoExiste = infoPage.verificaExistenciaCampoErroRG();
+
+        Assert.assertTrue(campoExiste);
+    }
+    @Test
+    public void tentaPreencherRGComCaracteresNãoLetrasOuNumeros() {
+
+        infoPage.preencherRGComCaracteresInvalidos();
+
+        String textoExtraido = infoPage.extraiTextoCampoRG();
+        String stringVazia = "";
+
+        Assert.assertEquals(stringVazia, textoExtraido);
+    }
+    @Test
     public void preeencherNomeCorretamente(){
         infoPage.preencherNomeValido();
     }
@@ -210,15 +247,7 @@ public class InfoSteps extends BaseSteps {
         infoPage.preencherCampoDataDeNascimentoValido();
         infoPage.preencherCampoCidadeValido();
         infoPage.selecionarEstadoPA();
-<<<<<<< HEAD
-        infoPage.preencherCampoNeurodiversidade();
-        infoPage.clicarEmProximo();
-=======
         infoPage.preencherCampoNeurodiversidadeNao();
->>>>>>> 373e7f8fbc789db78b927bc765d673b22c5bea3c
+        infoPage.clicarEmProximo();
     }
-
-
-
-
 }
