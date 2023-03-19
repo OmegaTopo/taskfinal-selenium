@@ -210,12 +210,8 @@ public class InfoSteps extends BaseSteps {
         infoPage.preencherCampoDataDeNascimentoValido();
         infoPage.preencherCampoCidadeValido();
         infoPage.selecionarEstadoPA();
-<<<<<<< HEAD
-        infoPage.preencherCampoNeurodiversidade();
-        infoPage.clicarEmProximo();
-=======
         infoPage.preencherCampoNeurodiversidadeNao();
->>>>>>> 373e7f8fbc789db78b927bc765d673b22c5bea3c
+        infoPage.clicarEmProximo();
     }
 
 

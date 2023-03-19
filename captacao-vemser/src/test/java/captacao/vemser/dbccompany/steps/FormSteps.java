@@ -23,9 +23,9 @@ public class FormSteps extends BaseSteps{
         infoPage.preencherCampoDataDeNascimentoValido();
         infoPage.preencherCampoCidadeValido();
         infoPage.selecionarEstadoPA();
+        infoPage.preencherCampoNeurodiversidadeNao();
         infoPage.clicarEmProximo();
     }
-
     @Test
     public void marcarTurnoNoite(){
         formPage.marcarTurnoNoite();
@@ -34,6 +34,29 @@ public class FormSteps extends BaseSteps{
     public void marcarTurnoATarde(){
         formPage.marcarTurnoTarde();
     }
+    @Test
+    public void marcarFluenteEmIngles(){
+        formPage.marcarInglesFluente();
+    }
+    @Test
+    public void marcarGeneroHomemCis(){
+        formPage.selecionarGeneroHomemCis();
+    }
+    @Test
+    public void marcarGeneroNaoBinario(){
+        formPage.selecionarGeneroNaoBinario();
+    }
+
+
+
+
+    @Test
+    public void avancar(){
+        formPage.marcarTurnoNoite();
+        formPage.marcarInglesFluente();
+        formPage.selecionarGeneroNaoBinario();
+    }
+
 
 
 
