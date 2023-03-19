@@ -17,6 +17,8 @@ public class FormPage extends BasePage{
     private static final By btnEnviar = By.cssSelector("[id=\"s2-botao-submit\"]");
     private static final By campoErroMatriculado = By.cssSelector("[id=\"erro-não-matriculado\"]");
     private static final By campoMatriculadoSimVerificacaoMarcado = By.cssSelector("input[name=\"matriculado\"][value=\"T\"]");
+    private static final By campoCurso = By.cssSelector("[id=curso-candidato]");
+    private static final By campoErroCurso = By.cssSelector("[id=\"curso-candidato-helper-text\"]");
 
 
     public void marcarTurnoNoite(){
@@ -45,5 +47,32 @@ public class FormPage extends BasePage{
     }
     public Boolean verificaExistenciaBotaoEnviar() {
         return verificaExistenciaElemento(btnEnviar);
+    }
+    public void preencheCampoCursoComStringValida() {
+        String cursoValido = "Ciência da computação";
+
+        preencheCampo(campoCurso, cursoValido);
+    }
+    public Boolean verificaExistenciaCampoErroCurso() {
+        return verificaExistenciaElemento(campoErroCurso);
+    }
+    public String extraiTextoCampoErroCurso() {
+        return extraiTexto(campoErroCurso);
+    }
+    public void clicarNoCampoCurso() {
+        clicar(campoCurso);
+    }
+    public void preencherCampoCursoComCaracteresInvalidos() {
+        String caracteresInvalidos = "-*/-5-*5-654-..";
+
+        preencheCampo(campoCurso, caracteresInvalidos);
+    }
+    public void preencherCampoCursoComStringDeMaisDe255Caracteres() {
+        String stringComMaisDe255Caracteres = "ESTA SRTRING POSSUI MAIS DE DUZENTOS E CINQUENTA E CINCO CARACTERES" +
+                " xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" +
+                "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" +
+                "xxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+
+        preencheCampo(campoCurso, stringComMaisDe255Caracteres);
     }
 }

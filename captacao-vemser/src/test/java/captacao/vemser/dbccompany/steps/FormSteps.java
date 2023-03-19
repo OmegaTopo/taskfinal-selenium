@@ -67,4 +67,52 @@ public class FormSteps extends BaseSteps{
 
         Assert.assertTrue(campoSelecionado);
     }
+    @Test
+    public void preencherCursoComStringValida() {
+
+        formPage.preencheCampoCursoComStringValida();
+        formPage.clicarEmEnviar();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroCurso();
+
+        Assert.assertFalse(campoExiste);
+    }
+    @Test
+    public void enviarFormularioComCursoVazio() {
+        String msgErroCampoCurso = "O Curso deve ter apenas letras e espaços";
+
+        formPage.clicarNoCampoCurso();
+        formPage.clicarEmEnviar();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroCurso();
+        String textoExtraido = formPage.extraiTextoCampoErroCurso();
+
+        Assert.assertTrue(campoExiste);
+        Assert.assertEquals(msgErroCampoCurso, textoExtraido);
+    }
+    @Test
+    public void preencherCursoComCaracteresInvalidos() {
+        String msgErroCampoCurso = "O Curso deve ter apenas letras e espaços";
+
+        formPage.clicarNoCampoCurso();
+        formPage.preencherCampoCursoComCaracteresInvalidos();
+        formPage.clicarEmEnviar();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroCurso();
+        String textoExtraido = formPage.extraiTextoCampoErroCurso();
+
+        Assert.assertTrue(campoExiste);
+        Assert.assertEquals(msgErroCampoCurso, textoExtraido);
+    }
+    @Test
+    public void preencherCursoComStringDeMaisDe255Caracteres() {
+
+        formPage.clicarNoCampoCurso();
+        formPage.preencherCampoCursoComStringDeMaisDe255Caracteres();
+        formPage.clicarEmEnviar();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroCurso();
+
+        Assert.assertTrue(campoExiste);
+    }
 }
