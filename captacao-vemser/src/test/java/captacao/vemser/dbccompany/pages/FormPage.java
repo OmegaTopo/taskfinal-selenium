@@ -19,6 +19,9 @@ public class FormPage extends BasePage{
     private static final By campoMatriculadoSimVerificacaoMarcado = By.cssSelector("input[name=\"matriculado\"][value=\"T\"]");
     private static final By campoCurso = By.cssSelector("[id=curso-candidato]");
     private static final By campoErroCurso = By.cssSelector("[id=\"curso-candidato-helper-text\"]");
+    private static final By campoOrientacaoSexual = By.cssSelector("[id=\"orientacao-sexual-candidato\"]");
+    private static final By opcaoOrientacaoPansexual = By.cssSelector("li[data-value=\"pansexual\"]");
+    private static final By opcaoOrientacaoOutro = By.cssSelector("li[data-value=\"outro\"]");
 
 
     public void marcarTurnoNoite(){
@@ -74,5 +77,20 @@ public class FormPage extends BasePage{
                 "xxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 
         preencheCampo(campoCurso, stringComMaisDe255Caracteres);
+    }
+    public void clicarNoCampoOrientacaoSexual() {
+
+        clicar(campoOrientacaoSexual);
+    }
+    public void clicarNaOpcaoOrientacaoPansexual() {
+
+        clicar(opcaoOrientacaoPansexual);
+    }
+    public void clicarNaOpcaoOrientacaoOutro() {
+
+        clicar(opcaoOrientacaoOutro);
+    }
+    public String extraiTextoCampoOrientacaoSexual() {
+        return extraiTexto(campoOrientacaoSexual);
     }
 }
