@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
+import java.time.LocalDateTime;
+
 
 public class InfoSteps extends BaseSteps {
     HomePage homePage = new HomePage();
@@ -63,6 +65,61 @@ public class InfoSteps extends BaseSteps {
         String stringVazia = "";
 
         Assert.assertEquals(stringVazia, textoExtraido);
+    }
+    @Test
+    public void preencherDataDeNascimentoCorretamente() {
+
+        infoPage.preencherCampoDataDeNascimentoValido();
+        infoPage.clicarEmProximo();
+
+        Boolean campoExiste = infoPage.verificaExistenciaCampoErroDataDeNascimento();
+
+        Assert.assertFalse(campoExiste);
+    }
+    @Test
+    public void preencherDataDeNascimentoComDataInvalida() {
+        String textoErroDataDeNascimento1 = "A data de nascimento deve ser uma data válida";
+        String textoErroDataDeNascimento2 = "A data de nascimento deve ser anterior a data atual";
+
+        infoPage.preencherCampoDataDeNascimentoComDataInvalida();
+        infoPage.clicarEmProximo();
+
+        Boolean campoExiste = infoPage.verificaExistenciaCampoErroDataDeNascimento();
+        String textoExtraido = infoPage.extraiTextoCampoErroDataDeNascimento();
+
+        Boolean contemTextoErroDataDeNascimento =
+                (textoExtraido.contains(textoErroDataDeNascimento1)) || (textoExtraido.contains(textoErroDataDeNascimento2))
+                        ? true
+                        : false;
+
+        Assert.assertTrue(campoExiste);
+        Assert.assertTrue(contemTextoErroDataDeNascimento);
+    }
+    @Test
+    public void preencherDataDeNascimentoComDataFutura() {
+        String textoErroDataDeNascimento = "A data de nascimento deve ser anterior a data atual";
+
+        infoPage.preencherCampoDataDeNascimentoComDataFutura();
+        infoPage.clicarEmProximo();
+
+        Boolean campoExiste = infoPage.verificaExistenciaCampoErroDataDeNascimento();
+        String textoExtraido = infoPage.extraiTextoCampoErroDataDeNascimento();
+
+        Assert.assertTrue(campoExiste);
+        Assert.assertEquals(textoErroDataDeNascimento, textoExtraido);
+    }
+    @Test
+    public void preencherDataDeNascimentoComIdadeAbaixoDeDezesseisAnos() {
+        String textoErroDataDeNascimento = "A data de nascimento deve ter no mínimo 16 anos";
+
+        infoPage.preencherCampoDataDeNascimentoComIdadeAbaixoDezesseisAnos();
+        infoPage.clicarEmProximo();
+
+        Boolean campoExiste = infoPage.verificaExistenciaCampoErroDataDeNascimento();
+        String textoExtraido = infoPage.extraiTextoCampoErroDataDeNascimento();
+
+        Assert.assertTrue(campoExiste);
+        Assert.assertEquals(textoErroDataDeNascimento, textoExtraido);
     }
     @Test
     public void preeencherNomeCorretamente(){

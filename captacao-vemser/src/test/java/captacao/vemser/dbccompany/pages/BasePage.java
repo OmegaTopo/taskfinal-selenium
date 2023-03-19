@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 
 public class BasePage extends Elements {
-    public static void clicar (By seletor){
+    public static void clicar(By seletor){
         aguardaCarregamentoElemento(seletor);
 
         buscaElemento(seletor).click();
