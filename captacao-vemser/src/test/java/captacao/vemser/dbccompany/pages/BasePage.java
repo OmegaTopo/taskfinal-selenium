@@ -48,7 +48,6 @@ public class BasePage extends Elements {
     public static Boolean verificaExistenciaElemento(By seletor) {
         try {
             buscaElemento(seletor);
-
             return true;
         } catch (NoSuchElementException e) {
             return false;

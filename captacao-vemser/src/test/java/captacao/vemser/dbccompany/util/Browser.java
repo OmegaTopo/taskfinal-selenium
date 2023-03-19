@@ -18,8 +18,8 @@ public class Browser {
         driver.get(url);
         driver.manage().timeouts().implicitlyWait(6000, TimeUnit.MILLISECONDS);
     }
-    public void fecharONavegador(){
-        driver.quit();
-    }
+//    public void fecharONavegador(){
+//        driver.quit();
+//    }
 
 }

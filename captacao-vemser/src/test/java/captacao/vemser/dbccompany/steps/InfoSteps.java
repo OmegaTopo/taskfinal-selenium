@@ -101,6 +101,7 @@ public class InfoSteps extends BaseSteps {
         infoPage.preencherCampoCidadeValido();
         infoPage.selecionarEstadoPA();
         infoPage.preencherCampoNeurodiversidade();
+        infoPage.clicarEmProximo();
     }
 
 

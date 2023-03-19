@@ -11,6 +11,7 @@ public class InfoPage extends BasePage {
     private Faker faker = new Faker(new Locale("pt-BR"));
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
+
     private static final By campoNome = By.cssSelector("[id=step-1-nome]");
     private static final By campoEmail = By.cssSelector("[id=step-1-email]");
     private static final By campoRG = By.cssSelector("[id=step-1-rg]");
@@ -29,7 +30,7 @@ public class InfoPage extends BasePage {
     private static final By opcaoNeurodiversidadeNao = By.cssSelector("#menu-neurodiversidadeBoolean li:nth-child(1)");
 
     public void preencherNomeValido() {
-        preencheCampo(campoNome, faker.name().nameWithMiddle());
+        preencheCampo(campoNome, faker.name().nameWithMiddle().replaceAll("[-+.^:,]",""));
     }
     public void preencherNomeSemSobrenome() {
         preencheCampo(campoNome, "Nome");
@@ -62,7 +63,7 @@ public class InfoPage extends BasePage {
 
     public void preencherCPFValido() {
         clicar(campoCPF);
-        preencheCampo(campoCPF, faker.cpf().toString());
+        preencheCampo(campoCPF, faker.cpf().valid());
     }
     public void preencherCPFInvalido() {
         clicar(campoCPF);
@@ -74,7 +75,7 @@ public class InfoPage extends BasePage {
     }
 
     public void preencherCampoCelularValido() {
-        preencheCampo(campoCelular, faker.phoneNumber().toString());
+        preencheCampo(campoCelular, faker.phoneNumber().cellPhone());
     }
 
     public void preencherCampoDataDeNascimentoValido() {
