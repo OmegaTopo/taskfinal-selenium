@@ -22,6 +22,10 @@ public class FormPage extends BasePage{
     private static final By campoOrientacaoSexual = By.cssSelector("[id=\"orientacao-sexual-candidato\"]");
     private static final By opcaoOrientacaoPansexual = By.cssSelector("li[data-value=\"pansexual\"]");
     private static final By opcaoOrientacaoOutro = By.cssSelector("li[data-value=\"outro\"]");
+    private static final By campoErroTrilha = By.cssSelector("div:nth-child(10) > p");
+    private static final By opcaoTrilhaBackend = By.cssSelector("input[value=\"BACKEND\"]");
+    private static final By opcaoTrilhaQa = By.cssSelector("input[value=\"QA\"]");
+    private static final By opcaoTrilhaFrontend = By.cssSelector("input[value=\"FRONTEND\"]");
 
 
     public void marcarTurnoNoite(){
@@ -92,5 +96,36 @@ public class FormPage extends BasePage{
     }
     public String extraiTextoCampoOrientacaoSexual() {
         return extraiTexto(campoOrientacaoSexual);
+    }
+    public void clicaOpcaoTrilhaBackend() {
+
+        clicar(opcaoTrilhaBackend);
+    }
+    public Boolean verificaSeOpcaoTrilhaBackendEstaMarcada() {
+        return verificaSeElementoEstaSelecionado(opcaoTrilhaBackend);
+    }
+    public Boolean verificaExistenciaCampoErroTrilha() {
+        return verificaExistenciaElemento(campoErroTrilha);
+    }
+    public String extraiTextoCampoErroTrilha() {
+        return extraiTexto(campoErroTrilha);
+    }
+
+    public void clicaOpcaoTrilhaQa() {
+
+        clicar(opcaoTrilhaQa);
+    }
+
+    public Boolean verificaSeOpcaoTrilhaQaEstaMarcada() {
+        return verificaSeElementoEstaSelecionado(opcaoTrilhaQa);
+    }
+
+    public void clicaOpcaoTrilhaFrontend() {
+
+        clicar(opcaoTrilhaFrontend);
+    }
+
+    public Boolean verificaSeOpcaoTrilhaFrontendEstaMarcada() {
+        return verificaSeElementoEstaSelecionado(opcaoTrilhaFrontend);
     }
 }
