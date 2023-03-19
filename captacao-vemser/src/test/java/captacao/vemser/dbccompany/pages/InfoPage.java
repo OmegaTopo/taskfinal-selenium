@@ -4,7 +4,12 @@ import net.datafaker.Faker;
 import org.openqa.selenium.By;
 
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class InfoPage extends BasePage {
 
@@ -34,6 +39,7 @@ public class InfoPage extends BasePage {
     private static final By opcaoNeurodiversidadeNao = By.cssSelector("#menu-neurodiversidadeBoolean li:nth-child(1)");
     private static final By opcaoNeurodiversidadeSim = By.cssSelector("#menu-neurodiversidadeBoolean li:nth-child(2)");
     private static final By campoProximaPagina = By.cssSelector("form > div:nth-child(1) > label");
+    private static final By campoErroDataDeNascimento = By.cssSelector("p[id=\"step-1-dataNascimento-helper-text\"]");
 
     public void preencherNomeValido() {
         preencheCampo(campoNome, faker.name().nameWithMiddle().replaceAll("[-+.^:,]",""));
@@ -63,8 +69,25 @@ public class InfoPage extends BasePage {
         clicar(campoRG);
         preencheCampo(campoRG, rgValido);
     }
-    public void preencherRGEmBranco() {
+    public void preencherRGInvalido() {
+        String rgInvalido = "rgInvalido";
 
+        clicar(campoRG);
+        preencheCampo(campoRG, rgInvalido);
+    }
+    public void preencherRGComCaracteresInvalidos() {
+        String caracteresInvalidos = "++--*/*";
+
+        clicar(campoRG);
+        preencheCampo(campoRG, caracteresInvalidos);
+    }
+    public String extraiTextoCampoRG() {
+
+        return extraiTexto(campoRG);
+    }
+    public String extraiTextoCampoErroRG() {
+
+        return extraiTexto(campoErroRG);
     }
     public void preencherCPFValido() {
         clicar(campoCPF);
@@ -83,6 +106,25 @@ public class InfoPage extends BasePage {
     }
     public void preencherCampoDataDeNascimentoValido() {
         preencheCampo(campoDataDeNascimento, dateFormat.format(faker.date().birthday()));
+    }
+    public void preencherCampoDataDeNascimentoComDataInvalida() {
+        String dataInvalida = "14/02/199348";
+
+        preencheCampo(campoDataDeNascimento, dataInvalida);
+    }
+    public void preencherCampoDataDeNascimentoComDataFutura() {
+        preencheCampo(campoDataDeNascimento, faker.date().future(60, TimeUnit.DAYS).toString());
+    }
+    public void preencherCampoDataDeNascimentoComIdadeAbaixoDezesseisAnos() {
+        Date dataDeNascimentoMenosDoze = Date.from(LocalDateTime.now().minusYears(12).toInstant(ZoneId.systemDefault().getRules().getOffset(Instant.now())));
+
+        preencheCampo(campoDataDeNascimento, dateFormat.format(dataDeNascimentoMenosDoze));
+    }
+    public Boolean verificaExistenciaCampoErroDataDeNascimento() {
+        return verificaExistenciaElemento(campoErroDataDeNascimento);
+    }
+    public String extraiTextoCampoErroDataDeNascimento() {
+        return extraiTexto(campoErroDataDeNascimento);
     }
     public void preencherCampoCidadeValido() {
         String cidadeValida = "Tailândia";
