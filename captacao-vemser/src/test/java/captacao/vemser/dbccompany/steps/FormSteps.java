@@ -1,22 +1,20 @@
 package captacao.vemser.dbccompany.steps;
 
-import captacao.vemser.dbccompany.pages.BasePage;
 import captacao.vemser.dbccompany.pages.FormPage;
 import captacao.vemser.dbccompany.pages.HomePage;
 import captacao.vemser.dbccompany.pages.InfoPage;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 
-public class FormSteps extends BaseSteps{
+public class FormSteps extends BaseSteps {
 
     HomePage homePage = new HomePage();
     InfoPage infoPage = new InfoPage();
     FormPage formPage = new FormPage();
 
     @Before
-    public void acessarFormulario(){
+    public void acessarFormulario() {
         homePage.clicarBtnInscricao();
         infoPage.preencherNomeValido();
         infoPage.preencherEmailValido();
@@ -29,53 +27,62 @@ public class FormSteps extends BaseSteps{
         infoPage.preencherCampoNeurodiversidadeNao();
         infoPage.clicarEmProximo();
     }
+
     @Test
-    public void marcarTurnoNoite(){
+    public void marcarTurnoNoite() {
         formPage.marcarTurnoNoite();
     }
+
     @Test
-    public void marcarTurnoATarde(){
+    public void marcarTurnoATarde() {
         formPage.marcarTurnoTarde();
     }
+
     @Test
-    public void marcarFluenteEmIngles(){
+    public void marcarFluenteEmIngles() {
         formPage.marcarInglesFluente();
 
         String validador = formPage.validarCampoIngles();
-        Assert.assertEquals("Fluente",validador);
+        Assert.assertEquals("Fluente", validador);
     }
+
     @Test
-    public void marcarGeneroHomemCis(){
+    public void marcarGeneroHomemCis() {
         formPage.selecionarGeneroHomemCis();
         String validador = formPage.validarCampoGenero();
-        Assert.assertEquals("Homem cisgênero",validador);
+        Assert.assertEquals("Homem cisgênero", validador);
     }
+
     @Test
-    public void marcarGeneroNaoBinario(){
+    public void marcarGeneroNaoBinario() {
         formPage.selecionarGeneroNaoBinario();
         String validador = formPage.validarCampoGenero();
-        Assert.assertEquals("Não binário",validador);
+        Assert.assertEquals("Não binário", validador);
     }
+
     @Test
-    public void selecionarDeficienciaSurdez(){
+    public void selecionarDeficienciaSurdez() {
         formPage.selecionarDeficiencia();
         formPage.selecionarDeficienciaSim();
         formPage.definirDeficienciaSurdez();
 
         String validador = formPage.validarCampoDeficiencia();
-        Assert.assertEquals("Surdez",validador);
+        Assert.assertEquals("Surdez", validador);
     }
+
     @Test
-    public void selecionarDeficienciaNao(){
+    public void selecionarDeficienciaNao() {
         formPage.selecionarDeficiencia();
         formPage.selecionarDeficienciaNao();
     }
+
     @Test
-    public void selecionarProvaTecnicaSim(){
+    public void selecionarProvaTecnicaSim() {
         formPage.selecionarSimProvaTecnica();
     }
+
     @Test
-    public void selecionarProvaTecnicaNao(){
+    public void selecionarProvaTecnicaNao() {
         formPage.selecionarNaoProvaTecnica();
     }
 
@@ -93,19 +100,21 @@ public class FormSteps extends BaseSteps{
     public void enviarGitHub(){
         formPage.digitarLinkGitHub();
     }
+
     @Test
-    public void enviarGitHubEmBranco(){
+    public void enviarGitHubEmBranco() {
         formPage.digitarLinkGitHubEmBranco();
         formPage.enviarFormulario();
     }
+
     @Test
-    public void enviarPrintConfiguracao(){
+    public void enviarPrintConfiguracao() {
         formPage.enviarPrintConfiguracoes();
         formPage.enviarFormulario();
     }
 
     @Test
-    public void avancar(){
+    public void avancar() {
         formPage.marcarTurnoNoite();
         formPage.marcarInglesFluente();
         formPage.selecionarGeneroNaoBinario();
@@ -126,6 +135,7 @@ public class FormSteps extends BaseSteps{
 
         Assert.assertFalse(campoExiste);
     }
+
     @Test
     public void preencherMatriculadoComRespostaNegativa() {
         String msgErroMatriculado = "Devido as restrições impostas pelas leis brasileiras, somente alunos que possuem vínculo" +
@@ -141,6 +151,7 @@ public class FormSteps extends BaseSteps{
         Assert.assertEquals(msgErroMatriculado, textoExtraido);
         Assert.assertFalse(btnExiste);
     }
+
     @Test
     public void opcaoSimDoCampoMatriculadoEMarcadaPorPadrao() {
 
@@ -148,6 +159,7 @@ public class FormSteps extends BaseSteps{
 
         Assert.assertTrue(campoSelecionado);
     }
+
     @Test
     public void preencherCursoComStringValida() {
 
@@ -158,6 +170,7 @@ public class FormSteps extends BaseSteps{
 
         Assert.assertFalse(campoExiste);
     }
+
     @Test
     public void enviarFormularioComCursoVazio() {
         String msgErroCampoCurso = "O Curso deve ter apenas letras e espaços";
@@ -171,6 +184,7 @@ public class FormSteps extends BaseSteps{
         Assert.assertTrue(campoExiste);
         Assert.assertEquals(msgErroCampoCurso, textoExtraido);
     }
+
     @Test
     public void preencherCursoComCaracteresInvalidos() {
         String msgErroCampoCurso = "O Curso deve ter apenas letras e espaços";
@@ -185,6 +199,7 @@ public class FormSteps extends BaseSteps{
         Assert.assertTrue(campoExiste);
         Assert.assertEquals(msgErroCampoCurso, textoExtraido);
     }
+
     @Test
     public void preencherCursoComStringDeMaisDe255Caracteres() {
 
@@ -196,6 +211,7 @@ public class FormSteps extends BaseSteps{
 
         Assert.assertTrue(campoExiste);
     }
+
     @Test
     public void marcarCampoOrientacaoSexualComOpcaoPansexual() {
         String textoPansexual = "Pansexual";
@@ -207,6 +223,7 @@ public class FormSteps extends BaseSteps{
 
         Assert.assertTrue(textoExtraido.contains(textoPansexual));
     }
+
     @Test
     public void marcarCampoOrientacaoSexualComOpcaoOutro() {
         String textoOutro = "Outro";
@@ -218,6 +235,7 @@ public class FormSteps extends BaseSteps{
 
         Assert.assertTrue(textoExtraido.contains(textoOutro));
     }
+
     @Test
     public void marcarAOpcaoTrilhaBackendComSucesso() {
 
@@ -229,6 +247,7 @@ public class FormSteps extends BaseSteps{
         Assert.assertFalse(campoExiste);
         Assert.assertTrue(campoMarcado);
     }
+
     @Test
     public void marcarAOpcaoTrilhaQaComSucesso() {
 
@@ -240,6 +259,7 @@ public class FormSteps extends BaseSteps{
         Assert.assertFalse(campoExiste);
         Assert.assertTrue(campoMarcado);
     }
+
     @Test
     public void marcarAOpcaoTrilhaFrontendComSucesso() {
 
@@ -251,6 +271,7 @@ public class FormSteps extends BaseSteps{
         Assert.assertFalse(campoExiste);
         Assert.assertTrue(campoMarcado);
     }
+
     @Test
     public void marcarTodasAsTrilhasComSucesso() {
 
@@ -268,6 +289,7 @@ public class FormSteps extends BaseSteps{
         Assert.assertTrue(campoMarcadoQa);
         Assert.assertTrue(campoMarcadoFrontend);
     }
+
     @Test
     public void tentaAvancarSemMarcarNenhumaTrilha() {
         String msgErroCampoTrilha = "A escolha de uma trilha é obrigatória";
@@ -280,6 +302,7 @@ public class FormSteps extends BaseSteps{
         Assert.assertTrue(campoExiste);
         Assert.assertEquals(msgErroCampoTrilha, textoExtraido);
     }
+
     @Test
     public void preencheCampoImportanteParaAVidaComSucesso() {
 
@@ -291,6 +314,7 @@ public class FormSteps extends BaseSteps{
 
         Assert.assertFalse(campoExiste);
     }
+
     @Test
     public void tentaAvancarSemPreencherCampoImportanteParaAVida() {
         String msgErroImportanteParaAVida = "Campo obrigatório";
@@ -304,6 +328,7 @@ public class FormSteps extends BaseSteps{
         Assert.assertTrue(campoExiste);
         Assert.assertEquals(msgErroImportanteParaAVida, textoExtraido);
     }
+
     @Test
     public void tentaAvancarPreenchendoCampoImportanteParaAVidaComMenosDeDezCaracteres() {
         String msgErroImportanteParaAVida = "São necessários 10 caracteres, no mínimo";
@@ -317,10 +342,25 @@ public class FormSteps extends BaseSteps{
 
         Assert.assertTrue(campoExiste);
         Assert.assertEquals(msgErroImportanteParaAVida, textoExtraido);
-        }
-
+    }
     @Test
-    public void preencherInstituicaoCorretamente(){
+    public void opcaoNaoDoCampoDisponibilidadeParaEstudoFicaMarcadaPorPadrao() {
+
+        Boolean opcaoMarcada = formPage.verificaOpcaoNaoCampoDisponibilidadeDeEstudoEstaMarcada();
+
+        Assert.assertTrue(opcaoMarcada);
+    }
+    @Test
+    public void marcarOpcaoSimCampoDisponibilidadeParaEstudoComSucesso() {
+
+        formPage.clicarNaOpcaoDisponibilidadeParaEstudoSim();
+
+        Boolean opcaoMarcada = formPage.verificaOpcaoSimCampoDisponibilidadeParaEstudoEstaMarcada();
+
+        Assert.assertTrue(opcaoMarcada);
+    }
+    @Test
+    public void preencherInstituicaoCorretamente() {
         formPage.preencherCampoInstituicao();
         formPage.clicarEnviar();
 
@@ -329,16 +369,16 @@ public class FormSteps extends BaseSteps{
     }
 
     @Test
-    public void preencherInstituicaoIncorretamente(){
+    public void preencherInstituicaoIncorretamente() {
         formPage.preencherCampoInstituicaoIncorretamente();
         formPage.clicarEnviar();
 
         Boolean campoExiste = formPage.verificaExistenciaErroInstituicao();
         Assert.assertTrue(campoExiste);
-}
+    }
 
     @Test
-    public void campoInstituicaoEmBranco(){
+    public void campoInstituicaoEmBranco() {
         formPage.clicarEnviar();
 
         String validador = formPage.verificaTextoCampoErroInstituicao();
@@ -346,7 +386,7 @@ public class FormSteps extends BaseSteps{
     }
 
     @Test
-    public void selecionarUmaOpcaoEspanhol(){
+    public void selecionarUmaOpcaoEspanhol() {
         String corLabelEspanholAntes = formPage.corCaixaEspanhol();
         formPage.clicarEspanhol();
         formPage.clicarEspanholNenhum();
@@ -356,7 +396,7 @@ public class FormSteps extends BaseSteps{
     }
 
     @Test
-    public void selecionarUmaLinguagemProgramacao(){
+    public void selecionarUmaLinguagemProgramacao() {
         formPage.clicarBtnLinguagemInteresse();
         formPage.clicarEmJava();
         formPage.clicarBtnLinguagemInteresseSair();
@@ -367,7 +407,7 @@ public class FormSteps extends BaseSteps{
     }
 
     @Test
-    public void deixarLinguagememBranco(){
+    public void deixarLinguagememBranco() {
         formPage.clicarEnviar();
 
         String validador = formPage.verificaTextoErroLinguagem();
@@ -375,7 +415,7 @@ public class FormSteps extends BaseSteps{
     }
 
     @Test
-    public void preencherMotivoInteresse(){
+    public void preencherMotivoInteresse() {
         formPage.preencheCampoMotivo();
         formPage.clicarEnviar();
 
@@ -384,7 +424,7 @@ public class FormSteps extends BaseSteps{
     }
 
     @Test
-    public void preencherMotivoInteresseInsuficiente(){
+    public void preencherMotivoInteresseInsuficiente() {
         formPage.preencheCampoMotivoInsuficiente();
         formPage.clicarEnviar();
 
@@ -393,7 +433,7 @@ public class FormSteps extends BaseSteps{
     }
 
     @Test
-    public void preencherMotivoInteresseInvalido(){
+    public void preencherMotivoInteresseInvalido() {
         formPage.preencheCampoMotivoInvalido();
         formPage.clicarEnviar();
 
@@ -402,7 +442,7 @@ public class FormSteps extends BaseSteps{
     }
 
     @Test
-    public void deixarMotivoInteresseEmBranco(){
+    public void deixarMotivoInteresseEmBranco() {
         formPage.clicarEnviar();
 
         String validador = formPage.extraiTextoCampoErroMotivo();
@@ -416,7 +456,7 @@ public class FormSteps extends BaseSteps{
     }
 
     @Test
-    public void preencherLinkedInInvalido(){
+    public void preencherLinkedInInvalido() {
         formPage.preencheCampoLinkedInInvalido();
         formPage.clicarEnviar();
     }
@@ -428,7 +468,7 @@ public class FormSteps extends BaseSteps{
     }
 
     @Test
-    public void concordarTratamento(){
+    public void concordarTratamento() {
         formPage.clicarConcordarTratamento();
         formPage.clicarEnviar();
 
@@ -437,7 +477,7 @@ public class FormSteps extends BaseSteps{
     }
 
     @Test
-    public void naoConcordarTratamento(){
+    public void naoConcordarTratamento() {
         formPage.clicarEnviar();
 
         String validador = formPage.verificaTextoErroConcordar();
@@ -445,7 +485,7 @@ public class FormSteps extends BaseSteps{
     }
 
     @Test
-    public void clicarBotaoVoltar(){
+    public void clicarBotaoVoltar() {
         formPage.clicarBtnVoltar();
 
         Boolean paginaForm = formPage.verificaPaginaAtual();

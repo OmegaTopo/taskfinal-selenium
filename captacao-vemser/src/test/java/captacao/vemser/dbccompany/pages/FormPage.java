@@ -2,14 +2,10 @@ package captacao.vemser.dbccompany.pages;
 
 import net.datafaker.Faker;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 
-import java.security.Key;
 import java.util.Locale;
 
-public class FormPage extends BasePage{
-    private Faker faker = new Faker(new Locale("pt-BR"));
-
+public class FormPage extends BasePage {
     private static final By campoTurnoNoite = By.cssSelector("#turno-noite > span.MuiButtonBase-root.MuiRadio-root.MuiRadio-colorPrimary.PrivateSwitchBase-root.MuiRadio-root.MuiRadio-colorPrimary.MuiRadio-root.MuiRadio-colorPrimary.css-kf7w3t > input");
     private static final By campoTurnoTarde = By.cssSelector("#turno-tarde > span.MuiButtonBase-root.MuiRadio-root.MuiRadio-colorPrimary.PrivateSwitchBase-root.MuiRadio-root.MuiRadio-colorPrimary.MuiRadio-root.MuiRadio-colorPrimary.css-kf7w3t > input");
     private static final By campoInglesFluente = By.cssSelector("li:nth-child(5)");
@@ -77,182 +73,245 @@ public class FormPage extends BasePage{
     private static final By campoErroImportanteParaAVida = By.cssSelector("[id=\"textarea-importante-candidato-helper-text\"]");
     private static final By btnInteresseDBCSim = By.cssSelector("#s2-candidato-efetivacao-sim ");
     private static final By btnInteresseDBCNao = By.cssSelector("#s2-candidato-efetivacao-nao ");
+    private static final By opcaoNaoDisponibilidadeParaEstudo = By.cssSelector("label[id=\"s2-candidato-disponibilidade-nao\"] input[value=\"F\"]");
+    private static final By opcaoSimDisponibilidadeParaEstudo = By.cssSelector("label[id=\"s2-candidato-disponibilidade-sim\"] input[value=\"T\"]");
 
+    private Faker faker = new Faker(new Locale("pt-BR"));
 
-    public void marcarTurnoNoite(){
+    public void marcarTurnoNoite() {
         clicar(campoTurnoNoite);
     }
-    public void marcarTurnoTarde(){
+
+    public void marcarTurnoTarde() {
         clicar(campoTurnoTarde);
     }
 
-    public void preencherCampoInstituicao(){
+    public void preencherCampoInstituicao() {
         preencheCampo(campoInstituicaoEnsino, faker.university().name());
     }
-    public void preencherCampoInstituicaoIncorretamente(){ preencheCampo(campoInstituicaoEnsino, faker.lorem().sentence(50));}
-    public void clicarEnviar(){ clicar(btnEnviar);}
-    public Boolean verificaExistenciaErroInstituicao(){ return verificaExistenciaElemento(campoErroInstituicao);}
-    public String verificaTextoCampoErroInstituicao(){
+
+    public void preencherCampoInstituicaoIncorretamente() {
+        preencheCampo(campoInstituicaoEnsino, faker.lorem().sentence(50));
+    }
+
+    public void clicarEnviar() {
+        clicar(btnEnviar);
+    }
+
+    public Boolean verificaExistenciaErroInstituicao() {
+        return verificaExistenciaElemento(campoErroInstituicao);
+    }
+
+    public String verificaTextoCampoErroInstituicao() {
         return extraiTexto(campoErroInstituicao);
     }
-    public void clicarEspanhol(){
+
+    public void clicarEspanhol() {
         clicar(btnSelecaoEspanhol);
     }
-    public void clicarEspanholNenhum(){
+
+    public void clicarEspanholNenhum() {
         clicar(btnEspanholNenhum);
     }
-    public void clicarEspanholFluente(){
+
+    public void clicarEspanholFluente() {
         clicar(btnEspanholFluente);
     }
-    public String corCaixaEspanhol(){
+
+    public String corCaixaEspanhol() {
         return extraiCores(campoLabelEspanhol);
     }
+
     public void clicarBtnLinguagemInteresse() {
         clicar(btnLinguagemInteresse);
     }
-    public void clicarBtnLinguagemInteresseSair(){
+
+    public void clicarBtnLinguagemInteresseSair() {
         clicar(btnLinguagemInteresseSair);
     }
+
     public void clicarEmJava() {
         clicar(btnJava);
     }
-    public String verificaTextoErroLinguagem(){
+
+    public String verificaTextoErroLinguagem() {
         return extraiTexto(campoErroLinguagem);
     }
-    public void preencheCampoMotivo(){
+
+    public void preencheCampoMotivo() {
         preencheCampo(campoMotivoInteresse, faker.lorem().sentence(20));
     }
-    public void preencheCampoMotivoInsuficiente(){
+
+    public void preencheCampoMotivoInsuficiente() {
         preencheCampo(campoMotivoInteresse, "abcdefghi");
     }
-    public void preencheCampoMotivoInvalido(){
+
+    public void preencheCampoMotivoInvalido() {
         preencheCampo(campoMotivoInteresse, "98734^!#$253462$%");
     }
-    public Boolean verificaExistenciaCampoErroMotivo(){
+
+    public Boolean verificaExistenciaCampoErroMotivo() {
         return verificaExistenciaElemento(campoErroMotivo);
     }
-    public String extraiTextoCampoErroMotivo(){
+
+    public String extraiTextoCampoErroMotivo() {
         return extraiTexto(campoErroMotivo);
     }
-    public void preencheCampoLinkedIn(){
+
+    public void preencheCampoLinkedIn() {
         preencheCampo(campoLinkLinkedIn, "https://www.linkedin.com/in/giovanne-lopes-16289b215/");
     }
-    public void preencheCampoLinkedInOutroSite(){
+
+    public void preencheCampoLinkedInOutroSite() {
         preencheCampo(campoLinkLinkedIn, "https://google.com/");
     }
-    public void preencheCampoLinkedInInvalido(){
+
+    public void preencheCampoLinkedInInvalido() {
         preencheCampo(campoLinkLinkedIn, "nfq39784fgnoia");
     }
-    public Boolean verificaPaginaAtual(){
+
+    public Boolean verificaPaginaAtual() {
         return verificaExistenciaElemento(campoPaginaAtual);
     }
-    public String extrairClasseAvisoLinkedIn(){
+
+    public String extrairClasseAvisoLinkedIn() {
         return extraiClasses(campoLabelLinkedIn);
     }
-    public void clicarConcordarTratamento(){
+
+    public void clicarConcordarTratamento() {
         clicar(btnConcordarDados);
     }
-    public String verificaTextoErroConcordar(){
+
+    public String verificaTextoErroConcordar() {
         return extraiTexto(campoErroConcordar);
     }
-    public void clicarBtnVoltar(){
+
+    public void clicarBtnVoltar() {
         clicar(btnIrParaInscricao);
     }
 
-    public void marcarInglesFluente(){
+    public void marcarInglesFluente() {
         clicar(campoNivelIngles);
         clicar(campoInglesFluente);
     }
-    public String validarCampoIngles(){
+
+    public String validarCampoIngles() {
         String texto = extraiTexto(campoNivelIngles);
         return texto;
     }
-    public void selecionarGeneroHomemCis(){
+
+    public void selecionarGeneroHomemCis() {
         clicar(campoGenero);
         clicar(campoGeneroHomemCis);
     }
-    public void selecionarGeneroNaoBinario(){
+
+    public void selecionarGeneroNaoBinario() {
         clicar(campoGenero);
         clicar(campoGeneroNaoBinario);
     }
-    public String validarCampoGenero(){
+
+    public String validarCampoGenero() {
         String texto = extraiTexto(campoGenero);
         return texto;
     }
-    public void selecionarDeficiencia(){
+
+    public void selecionarDeficiencia() {
         clicar(selecaoDeficiencia);
     }
-    public void selecionarDeficienciaSim(){
+
+    public void selecionarDeficienciaSim() {
         clicar(selecaoDeficienciaSim);
     }
-    public void selecionarDeficienciaNao(){
+
+    public void selecionarDeficienciaNao() {
         clicar(selecaoDeficienciaNao);
     }
-    public void definirDeficienciaSurdez(){
+
+    public void definirDeficienciaSurdez() {
         preencheCampo(campoDeficiencia, "Surdez");
     }
-    public String validarCampoDeficiencia(){
+
+    public String validarCampoDeficiencia() {
         String texto = extraiTexto(campoDeficiencia);
         return texto;
     }
-    public void selecionarSimProvaTecnica(){
+
+    public void selecionarSimProvaTecnica() {
         clicar(selecionarProvaTecnicaSim);
     }
-    public void selecionarNaoProvaTecnica(){
+
+    public void selecionarNaoProvaTecnica() {
         clicar(selecionarProvaTecnicaNao);
     }
-    public void digitarLinkGitHub(){
+
+    public void digitarLinkGitHub() {
         preencheCampo(campoGitHub, "https://github.com/");
     }
-    public void digitarLinkGitHubEmBranco(){
+
+    public void digitarLinkGitHubEmBranco() {
         preencheCampo(campoGitHub, " ");
     }
-    public void enviarPrintConfiguracoes(){
+
+    public void enviarPrintConfiguracoes() {
         clicar(btnPrintConfiguracao);
     }
-    public void enviarFormulario(){
+
+    public void enviarFormulario() {
         clicar(btnEnviar);
     }
+
     public void marcarCampoMatriculadoSim() {
         clicar(campoMatriculadoSim);
     }
+
     public void marcarCampoMatriculadoNao() {
         clicar(campoMatriculadoNao);
     }
+
     public void clicarEmEnviar() {
         clicar(btnEnviar);
     }
+
     public Boolean verificaExistenciaCampoErroMatriculado() {
         return verificaExistenciaElemento(campoErroMatriculado);
     }
+
     public String extraiTextoCampoErroMatriculado() {
         return extraiTexto(campoErroMatriculado);
     }
+
     public Boolean verificaOpcaoSimCampoMatriculadoEstaMarcada() {
         return verificaSeElementoEstaSelecionado(campoMatriculadoSimVerificacaoMarcado);
     }
+
     public Boolean verificaExistenciaBotaoEnviar() {
         return verificaExistenciaElemento(btnEnviar);
     }
+
     public void preencheCampoCursoComStringValida() {
         String cursoValido = "Ciência da computação";
 
         preencheCampo(campoCurso, cursoValido);
     }
+
     public Boolean verificaExistenciaCampoErroCurso() {
         return verificaExistenciaElemento(campoErroCurso);
     }
+
     public String extraiTextoCampoErroCurso() {
         return extraiTexto(campoErroCurso);
     }
+
     public void clicarNoCampoCurso() {
         clicar(campoCurso);
     }
+
     public void preencherCampoCursoComCaracteresInvalidos() {
         String caracteresInvalidos = "-*/-5-*5-654-..";
 
         preencheCampo(campoCurso, caracteresInvalidos);
     }
+
     public void preencherCampoCursoComStringDeMaisDe255Caracteres() {
         String stringComMaisDe255Caracteres = "ESTA SRTRING POSSUI MAIS DE DUZENTOS E CINQUENTA E CINCO CARACTERES" +
                 " xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" +
@@ -261,32 +320,40 @@ public class FormPage extends BasePage{
 
         preencheCampo(campoCurso, stringComMaisDe255Caracteres);
     }
+
     public void clicarNoCampoOrientacaoSexual() {
 
         clicar(campoOrientacaoSexual);
     }
+
     public void clicarNaOpcaoOrientacaoPansexual() {
 
 
         clicar(opcaoOrientacaoPansexual);
     }
+
     public void clicarNaOpcaoOrientacaoOutro() {
 
         clicar(opcaoOrientacaoOutro);
     }
+
     public String extraiTextoCampoOrientacaoSexual() {
         return extraiTexto(campoOrientacaoSexual);
     }
+
     public void clicaOpcaoTrilhaBackend() {
 
         clicar(opcaoTrilhaBackend);
     }
+
     public Boolean verificaSeOpcaoTrilhaBackendEstaMarcada() {
         return verificaSeElementoEstaSelecionado(opcaoTrilhaBackend);
     }
+
     public Boolean verificaExistenciaCampoErroTrilha() {
         return verificaExistenciaElemento(campoErroTrilha);
     }
+
     public String extraiTextoCampoErroTrilha() {
         return extraiTexto(campoErroTrilha);
     }
@@ -340,5 +407,18 @@ public class FormPage extends BasePage{
 
     public void selecionarInteresseDBCNao(){
         clicar(btnInteresseDBCNao);
+    }
+    
+    public Boolean verificaOpcaoNaoCampoDisponibilidadeDeEstudoEstaMarcada() {
+        return verificaSeElementoEstaSelecionado(opcaoNaoDisponibilidadeParaEstudo);
+    }
+
+    public void clicarNaOpcaoDisponibilidadeParaEstudoSim() {
+
+        clicar(opcaoSimDisponibilidadeParaEstudo);
+    }
+
+    public Boolean verificaOpcaoSimCampoDisponibilidadeParaEstudoEstaMarcada() {
+        return verificaSeElementoEstaSelecionado(opcaoSimDisponibilidadeParaEstudo);
     }
 }
