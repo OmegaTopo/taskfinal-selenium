@@ -101,7 +101,7 @@ public class FormSteps extends BaseSteps{
         formPage.selecionarDeficienciaNao();
         formPage.selecionarSimProvaTecnica();
         formPage.digitarLinkGitHub();
-//        formPage.enviarPrintConfiguracoes();
+//      formPage.enviarPrintConfiguracoes();
         formPage.enviarFormulario();
     }
 
