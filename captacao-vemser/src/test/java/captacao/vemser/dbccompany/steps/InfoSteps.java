@@ -300,12 +300,12 @@ public class InfoSteps extends BaseSteps {
     }
 
     @Test
-    public void neurodiversidadeSimCampoVazio(){
-        infoPage.preencherCampoNeurodiversidadeSim();
-        infoPage.clicarEmProximo();
+    public void verificaSeCampoInformacoesEstaEmDestaque() {
+        String classeElementoAtivo = "Mui-active";
 
-        Boolean proximoSite = infoPage.verificaExistenciaProximaPagina();
-        Assert.assertFalse(proximoSite);
+        String classesCampoInformacoes = infoPage.listaDeClassesDeElementosDaBarraDeStatus().get(0);
+
+        Assert.assertTrue(classesCampoInformacoes.contains(classeElementoAtivo));
     }
 
     @Test

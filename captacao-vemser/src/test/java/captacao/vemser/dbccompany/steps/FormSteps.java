@@ -3,17 +3,21 @@ package captacao.vemser.dbccompany.steps;
 import captacao.vemser.dbccompany.pages.FormPage;
 import captacao.vemser.dbccompany.pages.HomePage;
 import captacao.vemser.dbccompany.pages.InfoPage;
+import captacao.vemser.dbccompany.pages.SendPage;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public class FormSteps extends BaseSteps {
 
     HomePage homePage = new HomePage();
     InfoPage infoPage = new InfoPage();
     FormPage formPage = new FormPage();
+    SendPage sendPage = new SendPage();
 
     @Before
     public void acessarFormulario() {
@@ -159,16 +163,35 @@ public class FormSteps extends BaseSteps {
         formPage.enviarArquivoValidoCurriculo();
         formPage.clicarEmEnviar();
 
-        Boolean campoExiste = formPage.existenciaErroCurriculo();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroCurriculo();
         Assert.assertFalse(campoExiste);
     }
     @Test
     public void enviarCurriculoComFalha() {
+        String msgErroFormatoCurriculo = "O tipo de arquivo não é suportado. Só é possível enviar PDF.";
+
         formPage.enviarArquivoInvalidoCurriculo();
         formPage.clicarEmEnviar();
 
-        String validador = formPage.validarTextoErroTipoArquivoCurriculo();
-        Assert.assertEquals("O tipo de arquivo não é suportado. Só é possível enviar PDF.",validador);
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroCurriculo();
+        String textoExtraido = formPage.extraiTextoErroCurriculo();
+
+        Assert.assertTrue(campoExiste);
+        Assert.assertEquals(msgErroFormatoCurriculo, textoExtraido);
+    }
+
+    @Test
+    public void enviarCurriculoSemArquivo() {
+        String msgErroFormatoCurriculo = "O currículo é obrigatório";
+
+        formPage.clicarEmEnviar();
+
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroCurriculo();
+        String textoExtraido = formPage.extraiTextoErroCurriculo();
+
+        Assert.assertTrue(campoExiste);
+        Assert.assertEquals(msgErroFormatoCurriculo, textoExtraido);
     }
 
     @Test
@@ -552,6 +575,15 @@ public class FormSteps extends BaseSteps {
     }
 
     @Test
+    public void verificaSeCampoFormularioEstaEmDestaque() {
+        String classeElementoAtivo = "Mui-active";
+
+        String classesCampoFormulario = formPage.listaDeClassesDeElementosDaBarraDeStatus().get(1);
+
+        Assert.assertTrue(classesCampoFormulario.contains(classeElementoAtivo));
+    }
+
+    @Test
     public void concordarTratamento() {
         formPage.clicarConcordarTratamento();
         formPage.clicarEnviar();
@@ -609,8 +641,14 @@ public class FormSteps extends BaseSteps {
         formPage.clicarConcordarTratamento();
         formPage.clicarEmEnviar();
 
-        Boolean campoExiste = formPage.verificaPaginaAtual();
-        Assert.assertFalse(campoExiste);
+
+        String textoSucessoInscricao = "Inscrito com sucesso!";
+
+        Boolean campoExiste = sendPage.verificaExistenciaCampoSucessoInscricao();
+        String textoExtraido = sendPage.extraiTextoCampoSucessoInscricao();
+
+        Assert.assertTrue(campoExiste);
+        Assert.assertEquals(textoSucessoInscricao, textoExtraido);
     }
-    
+
 }
