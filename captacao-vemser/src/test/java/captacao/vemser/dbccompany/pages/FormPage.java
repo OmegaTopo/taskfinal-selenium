@@ -2,38 +2,34 @@ package captacao.vemser.dbccompany.pages;
 
 import net.datafaker.Faker;
 import org.openqa.selenium.By;
-
 import java.util.Locale;
 
 public class FormPage extends BasePage {
+
+    // Turno
     private static final By campoTurnoNoite = By.cssSelector("#turno-noite > span.MuiButtonBase-root.MuiRadio-root.MuiRadio-colorPrimary.PrivateSwitchBase-root.MuiRadio-root.MuiRadio-colorPrimary.MuiRadio-root.MuiRadio-colorPrimary.css-kf7w3t > input");
     private static final By campoTurnoTarde = By.cssSelector("#turno-tarde > span.MuiButtonBase-root.MuiRadio-root.MuiRadio-colorPrimary.PrivateSwitchBase-root.MuiRadio-root.MuiRadio-colorPrimary.MuiRadio-root.MuiRadio-colorPrimary.css-kf7w3t > input");
+    // Idiomas
+    private static final By campoNivelIngles = By.cssSelector("[id=s2-nivel-ingles-candidato]");
     private static final By campoInglesFluente = By.cssSelector("li:nth-child(5)");
-    private static final By campoInstituicaoEnsino = By.cssSelector("[id=instituicao-de-ensino-candidato]");
     private static final By btnSelecaoEspanhol = By.cssSelector("div:nth-child(6) > div > div");
     private static final By btnEspanholNenhum = By.cssSelector("#menu-espanhol li:nth-child(1)");
-    private static final By btnEspanholIniciante = By.cssSelector("#menu-espanhol li:nth-child(2)");
-    private static final By btnEspanholIntermediario = By.cssSelector("#menu-espanhol li:nth-child(3)");
-    private static final By btnEspanholAvancado = By.cssSelector("#menu-espanhol li:nth-child(4)");
     private static final By btnEspanholFluente = By.cssSelector("#menu-espanhol li:nth-child(5)");
+    // Instituição de Ensino
+    private static final By campoInstituicaoEnsino = By.cssSelector("[id=instituicao-de-ensino-candidato]");
+    // Linguagem de programação
     private static final By btnLinguagemInteresse = By.cssSelector("div:nth-child(9) > div > div");
     private static final By btnLinguagemInteresseSair = By.cssSelector("#menu- > div.MuiBackdrop-root.MuiBackdrop-invisible.css-esi9ax");
-    private static final By btnCSharp = By.cssSelector("#menu- li:nth-child(1) .MuiButtonBase-root");
-    private static final By btnJavaScript = By.cssSelector("#menu- li:nth-child(2) .MuiButtonBase-root");
-    private static final By btnKotlin = By.cssSelector("#menu- li:nth-child(3) .MuiButtonBase-root");
     private static final By btnJava = By.cssSelector("#menu- li:nth-child(4) .MuiButtonBase-root");
-    private static final By btnCmaismais = By.cssSelector("#menu- li:nth-child(5) .MuiButtonBase-root");
-    private static final By btnPHP = By.cssSelector("#menu- li:nth-child(6) .MuiButtonBase-root");
-    private static final By btnRuby = By.cssSelector("#menu- li:nth-child(7) .MuiButtonBase-root");
-    private static final By btnPython = By.cssSelector("#menu- li:nth-child(8) .MuiButtonBase-root");
-    private static final By btnSwift = By.cssSelector("#menu- li:nth-child(9) .MuiButtonBase-root");
-    private static final By btnC = By.cssSelector("#menu- li:nth-child(10) .MuiButtonBase-root");
-    private static final By btnOutras = By.cssSelector("#menu- li:nth-child(11) .MuiButtonBase-root");
+    //
     private static final By campoMotivoInteresse = By.cssSelector("[id=s2-candidato-motivo]");
     private static final By btnDisponibilidadeEfetivacaoSim = By.cssSelector("#s2-candidato-efetivacao-sim .css-hyxlzm");
     private static final By btnDisponobilidadeEfetivacaoNao = By.cssSelector("#s2-candidato-efetivacao-nao .css-hyxlzm");
+    // LinkedIn e GitHub
     private static final By campoLinkLinkedIn = By.cssSelector("[id=s2-candidato-linkedin]");
     private static final By campoLabelLinkedIn = By.cssSelector("#s2-candidato-linkedin-label");
+    private static final By campoGitHub = By.cssSelector("[id=s2-candidato-github]");
+    //
     private static final By btnConcordarDados = By.cssSelector("#s2-candidato-lgpd span:nth-child(1)");
     private static final By btnIrParaInscricao = By.cssSelector("div > button");
     private static final By campoErroInstituicao = By.cssSelector("#instituicao-de-ensino-candidato-helper-text");
@@ -43,18 +39,24 @@ public class FormPage extends BasePage {
     private static final By campoErroMotivo = By.cssSelector("#s2-candidato-motivo-helper-text");
     private static final By campoPaginaAtual = By.cssSelector("form > div:nth-child(1) > label");
     private static final By campoErroConcordar = By.cssSelector("#mensagem-erro-lgpd");
-    private static final By campoNivelIngles = By.cssSelector("[id=s2-nivel-ingles-candidato]");
+    // Gênero
     private static final By campoGenero = By.cssSelector("[id=s2-select-genero-candidato]");
     private static final By campoGeneroHomemCis = By.cssSelector("li.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.Mui-selected.MuiMenuItem-root.MuiMenuItem-gutters.Mui-selected.css-12kak8r");
     private static final By campoGeneroNaoBinario = By.cssSelector("li:nth-child(5)");
+    // Deficiência
     private static final By selecaoDeficiencia = By.cssSelector("[id=s2-select-deficiencia-candidato]");
     private static final By selecaoDeficienciaSim = By.cssSelector("li:nth-child(2)");
     private static final By selecaoDeficienciaNao = By.cssSelector("li.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.Mui-selected.MuiMenuItem-root.MuiMenuItem-gutters.Mui-selected.css-12kak8r");
     private static final By campoDeficiencia = By.cssSelector("[id=s2-candidato-deficiencia-descricao]");
+    // Prova Técnica
     private static final By selecionarProvaTecnicaSim = By.cssSelector("#s2-candidato-prova-sim > span.MuiButtonBase-root.MuiRadio-root.MuiRadio-colorPrimary.PrivateSwitchBase-root.MuiRadio-root.MuiRadio-colorPrimary.MuiRadio-root.MuiRadio-colorPrimary.css-kf7w3t > input");
     private static final By selecionarProvaTecnicaNao = By.cssSelector("#s2-candidato-prova-nao > span.MuiButtonBase-root.MuiRadio-root.MuiRadio-colorPrimary.PrivateSwitchBase-root.MuiRadio-root.MuiRadio-colorPrimary.Mui-checked.MuiRadio-root.MuiRadio-colorPrimary.css-kf7w3t > input");
-    private static final By campoGitHub = By.cssSelector("[id=s2-candidato-github]");
-    private static final By btnPrintConfiguracao = By.cssSelector("[id=botao-configuracoes]");
+    // Anexo de arquivos
+    private static final By campoErroTipoArquivoPrint = By.cssSelector("div:nth-child(21) > p");
+    private static final By campoEnvioAnexoPrint = By.cssSelector("[id=s2-input-configuracoes]");
+    private static final By campoErroTipoArquivoCurriculo = By.cssSelector("div:nth-child(20) > p");
+    private static final By campoEnvioAnexoCurriculo = By.cssSelector("[id=s2-input-curriculo]");
+    //
     private static final By campoMatriculadoSim = By.cssSelector("#matriculado-sim span:nth-child(1)");
     private static final By campoMatriculadoNao = By.cssSelector("#matriculado-nao span:nth-child(1)");
     private static final By btnEnviar = By.cssSelector("[id=\"s2-botao-submit\"]");
@@ -62,13 +64,16 @@ public class FormPage extends BasePage {
     private static final By campoMatriculadoSimVerificacaoMarcado = By.cssSelector("input[name=\"matriculado\"][value=\"T\"]");
     private static final By campoCurso = By.cssSelector("[id=curso-candidato]");
     private static final By campoErroCurso = By.cssSelector("[id=\"curso-candidato-helper-text\"]");
+    // Orientação Sexual
     private static final By campoOrientacaoSexual = By.cssSelector("[id=\"orientacao-sexual-candidato\"]");
     private static final By opcaoOrientacaoPansexual = By.cssSelector("li[data-value=\"pansexual\"]");
     private static final By opcaoOrientacaoOutro = By.cssSelector("li[data-value=\"outro\"]");
+    // Trilhas
     private static final By campoErroTrilha = By.cssSelector("div:nth-child(10) > p");
     private static final By opcaoTrilhaBackend = By.cssSelector("input[value=\"BACKEND\"]");
     private static final By opcaoTrilhaQa = By.cssSelector("input[value=\"QA\"]");
     private static final By opcaoTrilhaFrontend = By.cssSelector("input[value=\"FRONTEND\"]");
+    //
     private static final By campoImportanteParaAVida = By.cssSelector("[id=textarea-importante-candidato]");
     private static final By campoErroImportanteParaAVida = By.cssSelector("[id=\"textarea-importante-candidato-helper-text\"]");
     private static final By btnInteresseDBCSim = By.cssSelector("#s2-candidato-efetivacao-sim ");
@@ -87,7 +92,7 @@ public class FormPage extends BasePage {
     }
 
     public void preencherCampoInstituicao() {
-        preencheCampo(campoInstituicaoEnsino, faker.university().name());
+        preencheCampo(campoInstituicaoEnsino, faker.university().name().replaceAll("[-+.^:,]",""));
     }
 
     public void preencherCampoInstituicaoIncorretamente() {
@@ -251,13 +256,25 @@ public class FormPage extends BasePage {
     public void digitarLinkGitHubEmBranco() {
         preencheCampo(campoGitHub, " ");
     }
-
-    public void enviarPrintConfiguracoes() {
-        clicar(btnPrintConfiguracao);
+    public void enviarArquivoValidoPrint(){
+        preencheCampo(campoEnvioAnexoPrint,"C:\\Users\\Gabriel\\Desktop\\Repositorios\\DBC\\taskfinal-selenium\\captacao-vemser\\anexos\\print.jpg");
     }
-
-    public void enviarFormulario() {
-        clicar(btnEnviar);
+    public void enviarArquivoInvalidoPrint(){
+        preencheCampo(campoEnvioAnexoPrint,"C:\\Users\\Gabriel\\Desktop\\Repositorios\\DBC\\taskfinal-selenium\\captacao-vemser\\anexos\\Teste.txt");
+    }
+    public String validarTextoErroTipoArquivoPrint() {
+        String texto = extraiTexto(campoErroTipoArquivoPrint);
+        return texto;
+    }
+    public void enviarArquivoValidoCurriculo(){
+        preencheCampo(campoEnvioAnexoCurriculo,"C:\\Users\\Gabriel\\Desktop\\Repositorios\\DBC\\taskfinal-selenium\\captacao-vemser\\anexos\\curriculo.pdf");
+    }
+    public void enviarArquivoInvalidoCurriculo(){
+        preencheCampo(campoEnvioAnexoCurriculo,"C:\\Users\\Gabriel\\Desktop\\Repositorios\\DBC\\taskfinal-selenium\\captacao-vemser\\anexos\\curriculo.docx");
+    }
+    public String validarTextoErroTipoArquivoCurriculo() {
+        String texto = extraiTexto(campoErroTipoArquivoCurriculo);
+        return texto;
     }
 
     public void marcarCampoMatriculadoSim() {
@@ -385,6 +402,9 @@ public class FormPage extends BasePage {
 
         preencheCampo(campoImportanteParaAVida, faker.lorem().paragraph());
         preencheCampo(campoImportanteParaAVida, faker.lorem().characters(100));
+    }
+    public void preencherCampoImportanteParaAVidaComSucesso() {
+        preencheCampo(campoImportanteParaAVida, faker.lorem().paragraph());
     }
 
     public Boolean verificaExistenciaCampoErroImportanteParaAVida() {

@@ -9,8 +9,8 @@ public class BaseSteps extends Browser {
     public void abrirNavegador(){
         abrirONavegador("http://vemser-dbc.dbccompany.com.br:39000/vemser/captacao-front");
     }
-    @After
-    public void fecharNavegador(){
-        fecharONavegador();
-    }
+//    @After
+//    public void fecharNavegador(){
+//        fecharONavegador();
+//    }
 }
