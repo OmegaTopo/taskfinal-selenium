@@ -2,6 +2,10 @@ package captacao.vemser.dbccompany.pages;
 
 import net.datafaker.Faker;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class FormPage extends BasePage {
@@ -56,7 +60,7 @@ public class FormPage extends BasePage {
     // Anexo de arquivos
     private static final By campoErroTipoArquivoPrint = By.cssSelector("div:nth-child(21) > p");
     private static final By campoEnvioAnexoPrint = By.cssSelector("[id=s2-input-configuracoes]");
-    private static final By campoErroTipoArquivoCurriculo = By.cssSelector("div:nth-child(20) > p");
+    private static final By campoErroCurriculo = By.cssSelector("div:nth-child(20) > p");
     private static final By campoEnvioAnexoCurriculo = By.cssSelector("[id=s2-input-curriculo]");
     //
     private static final By campoMatriculadoSim = By.cssSelector("#matriculado-sim span:nth-child(1)");
@@ -82,6 +86,7 @@ public class FormPage extends BasePage {
     private static final By btnInteresseDBCNao = By.cssSelector("#s2-candidato-efetivacao-nao ");
     private static final By opcaoNaoDisponibilidadeParaEstudo = By.cssSelector("label[id=\"s2-candidato-disponibilidade-nao\"] input[value=\"F\"]");
     private static final By opcaoSimDisponibilidadeParaEstudo = By.cssSelector("label[id=\"s2-candidato-disponibilidade-sim\"] input[value=\"T\"]");
+    private static final By itensBarraDeStatus = By.cssSelector("div:nth-child(1) span[class*=\"MuiStepLabel-iconContainer\"]");
 
     private Faker faker = new Faker(new Locale("pt-BR"));
 
@@ -296,9 +301,12 @@ public class FormPage extends BasePage {
 
         preencheCampo(campoEnvioAnexoCurriculo, filePath);
     }
-    public String validarTextoErroTipoArquivoCurriculo() {
-        String texto = extraiTexto(campoErroTipoArquivoCurriculo);
-        return texto;
+
+    public Boolean verificaExistenciaCampoErroCurriculo() {
+        return verificaExistenciaElemento(campoErroCurriculo);
+    }
+    public String extraiTextoErroCurriculo() {
+        return extraiTexto(campoErroCurriculo);
     }
 
     public void marcarCampoMatriculadoSim() {
@@ -464,5 +472,16 @@ public class FormPage extends BasePage {
 
     public Boolean verificaOpcaoSimCampoDisponibilidadeParaEstudoEstaMarcada() {
         return verificaSeElementoEstaSelecionado(opcaoSimDisponibilidadeParaEstudo);
+    }
+
+    public List<String> listaDeClassesDeElementosDaBarraDeStatus() {
+        List<WebElement> elementos = buscaElementos(itensBarraDeStatus);
+        List<String> listaDeClasses = new ArrayList<>();
+
+        for (int i = 0; i < elementos.size(); i++) {
+            listaDeClasses.add(extraiClassesElemento(elementos.get(i)));
+        }
+
+        return listaDeClasses;
     }
 }
