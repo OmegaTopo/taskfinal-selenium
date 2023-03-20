@@ -3,6 +3,7 @@ package captacao.vemser.dbccompany.steps;
 import captacao.vemser.dbccompany.pages.FormPage;
 import captacao.vemser.dbccompany.pages.HomePage;
 import captacao.vemser.dbccompany.pages.InfoPage;
+import captacao.vemser.dbccompany.pages.SendPage;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +17,7 @@ public class FormSteps extends BaseSteps {
     HomePage homePage = new HomePage();
     InfoPage infoPage = new InfoPage();
     FormPage formPage = new FormPage();
+    SendPage sendPage = new SendPage();
 
     @Before
     public void acessarFormulario() {
@@ -594,6 +596,14 @@ public class FormSteps extends BaseSteps {
         formPage.enviarArquivoValidoCurriculo();
         formPage.clicarConcordarTratamento();
         formPage.clicarEmEnviar();
+
+        String textoSucessoInscricao = "Inscrito com sucesso!";
+
+        Boolean campoExiste = sendPage.verificaExistenciaCampoSucessoInscricao();
+        String textoExtraido = sendPage.extraiTextoCampoSucessoInscricao();
+
+        Assert.assertTrue(campoExiste);
+        Assert.assertEquals(textoSucessoInscricao, textoExtraido);
     }
 
 }
