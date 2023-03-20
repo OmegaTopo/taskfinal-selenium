@@ -30,8 +30,8 @@ public class FormPage extends BasePage {
     private static final By btnC = By.cssSelector("#menu- li:nth-child(10) .MuiButtonBase-root");
     private static final By btnOutras = By.cssSelector("#menu- li:nth-child(11) .MuiButtonBase-root");
     private static final By campoMotivoInteresse = By.cssSelector("[id=s2-candidato-motivo]");
-    private static final By btnDisponibilidadeEfetivacaoSim = By.cssSelector("#s2-candidato-efetivacao-sim .css-hyxlzm");
-    private static final By btnDisponobilidadeEfetivacaoNao = By.cssSelector("#s2-candidato-efetivacao-nao .css-hyxlzm");
+    private static final By btnDisponibilidadeEfetivacaoSim = By.cssSelector("label[id=\"s2-candidato-efetivacao-sim\"] input[value=\"T\"]");
+    private static final By btnDisponobilidadeEfetivacaoNao = By.cssSelector("label[id=\"s2-candidato-efetivacao-nao\"] input[value=\"F\"]");
     private static final By campoLinkLinkedIn = By.cssSelector("[id=s2-candidato-linkedin]");
     private static final By campoLabelLinkedIn = By.cssSelector("#s2-candidato-linkedin-label");
     private static final By btnConcordarDados = By.cssSelector("#s2-candidato-lgpd span:nth-child(1)");
@@ -93,7 +93,21 @@ public class FormPage extends BasePage {
     public void preencherCampoInstituicaoIncorretamente() {
         preencheCampo(campoInstituicaoEnsino, faker.lorem().sentence(50));
     }
-
+    public void preencherCampoInstituicaoIncorretamenteNumeros(){
+        preencheCampo(campoInstituicaoEnsino, "11@@33$$55^^77");
+    }
+    public void clicarDisponibilidadeEfetivarSim(){
+        clicar(btnDisponibilidadeEfetivacaoSim);
+    }
+    public void clicarDisponibilidadeEfetivarNao(){
+        clicar(btnDisponobilidadeEfetivacaoNao);
+    }
+    public Boolean verificaDisponibilidadeEfetivacaoSim() {
+        return verificaSeElementoEstaSelecionado(btnDisponibilidadeEfetivacaoSim);
+    }
+    public Boolean verificaDisponibilidadeEfetivacaoNao() {
+        return verificaSeElementoEstaSelecionado(btnDisponobilidadeEfetivacaoNao);
+    }
     public void clicarEnviar() {
         clicar(btnEnviar);
     }
