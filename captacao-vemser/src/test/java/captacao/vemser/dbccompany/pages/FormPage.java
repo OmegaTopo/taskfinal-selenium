@@ -257,20 +257,28 @@ public class FormPage extends BasePage {
         preencheCampo(campoGitHub, " ");
     }
     public void enviarArquivoValidoPrint(){
-        preencheCampo(campoEnvioAnexoPrint,"C:\\Users\\Gabriel\\Desktop\\Repositorios\\DBC\\taskfinal-selenium\\captacao-vemser\\anexos\\print.jpg");
+        String filePath = System.getProperty("user.dir") + "/src/test/resources/jaspion_de_madeira.jpg";
+
+        preencheCampo(campoEnvioAnexoPrint, filePath);
     }
     public void enviarArquivoInvalidoPrint(){
-        preencheCampo(campoEnvioAnexoPrint,"C:\\Users\\Gabriel\\Desktop\\Repositorios\\DBC\\taskfinal-selenium\\captacao-vemser\\anexos\\Teste.txt");
+        String filePath = System.getProperty("user.dir") + "/src/test/resources/arquivo_txt.txt";
+
+        preencheCampo(campoEnvioAnexoPrint, filePath);
     }
     public String validarTextoErroTipoArquivoPrint() {
         String texto = extraiTexto(campoErroTipoArquivoPrint);
         return texto;
     }
     public void enviarArquivoValidoCurriculo(){
-        preencheCampo(campoEnvioAnexoCurriculo,"C:\\Users\\Gabriel\\Desktop\\Repositorios\\DBC\\taskfinal-selenium\\captacao-vemser\\anexos\\curriculo.pdf");
+        String filePath = System.getProperty("user.dir") + "/src/test/resources/curriculo_em_pdf.pdf";
+
+        preencheCampo(campoEnvioAnexoCurriculo, filePath);
     }
     public void enviarArquivoInvalidoCurriculo(){
-        preencheCampo(campoEnvioAnexoCurriculo,"C:\\Users\\Gabriel\\Desktop\\Repositorios\\DBC\\taskfinal-selenium\\captacao-vemser\\anexos\\curriculo.docx");
+        String filePath = System.getProperty("user.dir") + "/src/test/resources/curriculo_em_docx.docx";
+
+        preencheCampo(campoEnvioAnexoCurriculo, filePath);
     }
     public String validarTextoErroTipoArquivoCurriculo() {
         String texto = extraiTexto(campoErroTipoArquivoCurriculo);
