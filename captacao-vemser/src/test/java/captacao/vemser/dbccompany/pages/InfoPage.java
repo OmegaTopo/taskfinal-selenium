@@ -198,4 +198,8 @@ public class InfoPage extends BasePage {
     public Boolean verificaExistenciaProximaPagina(){
         return verificaExistenciaElemento(campoProximaPagina);
     }
+
+    public Boolean verificaExistenciaCampoErroCPF(){
+        return verificaExistenciaElemento(campoErroCPF);
+    }
 }

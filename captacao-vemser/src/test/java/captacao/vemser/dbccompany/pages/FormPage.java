@@ -33,6 +33,7 @@ public class FormPage extends BasePage {
     private static final By campoLinkLinkedIn = By.cssSelector("[id=s2-candidato-linkedin]");
     private static final By campoLabelLinkedIn = By.cssSelector("#s2-candidato-linkedin-label");
     private static final By campoGitHub = By.cssSelector("[id=s2-candidato-github]");
+    private static final By campoLabelGitHub = By.cssSelector("#s2-candidato-github-label");
     // Concordar Dados
     private static final By btnConcordarDados = By.cssSelector("#s2-candidato-lgpd span:nth-child(1)");
     private static final By campoErroConcordar = By.cssSelector("#mensagem-erro-lgpd");
@@ -286,6 +287,12 @@ public class FormPage extends BasePage {
         String texto = extraiTexto(campoErroTipoArquivoPrint);
         return texto;
     }
+    public Boolean existenciaErroPrint(){
+        return verificaExistenciaElemento(campoErroTipoArquivoPrint);
+    }
+    public Boolean existenciaErroCurriculo(){
+        return verificaExistenciaElemento(campoErroTipoArquivoCurriculo);
+    }
     public void enviarArquivoValidoCurriculo(){
         String filePath = System.getProperty("user.dir") + "/src/test/resources/curriculo_em_pdf.pdf";
 
@@ -464,5 +471,36 @@ public class FormPage extends BasePage {
 
     public Boolean verificaOpcaoSimCampoDisponibilidadeParaEstudoEstaMarcada() {
         return verificaSeElementoEstaSelecionado(opcaoSimDisponibilidadeParaEstudo);
+    }
+
+    public String extraiClasseLinkedIn(){
+        return extraiClasses(campoLabelLinkedIn);
+    }
+
+    public String extraiClasseGithub(){
+        return extraiClasses(campoLabelGitHub);
+    }
+
+    public Boolean verificaSelecaoDeficiencia(){
+        return verificaExistenciaElemento(campoDeficiencia);
+    }
+
+    public Boolean verificaSelecaoProvaTecnicaSim(){
+        return verificaSeElementoEstaSelecionado(selecionarProvaTecnicaSim);
+    }
+    public Boolean verificaSelecaoProvaTecnicaNao(){
+        return verificaSeElementoEstaSelecionado(selecionarProvaTecnicaNao);
+    }
+    public Boolean verificaInteresseDBCSim(){
+        return verificaSeElementoEstaSelecionado(btnInteresseDBCSim);
+    }
+    public Boolean verificaInteresseDBCNao(){
+        return verificaSeElementoEstaSelecionado(btnInteresseDBCNao);
+    }
+    public Boolean verificaSelecaoTurnoNoite(){
+        return verificaSeElementoEstaSelecionado(campoTurnoNoite);
+    }
+    public Boolean verificaSelecaoTurnoTarde(){
+        return verificaSeElementoEstaSelecionado(campoTurnoTarde);
     }
 }
