@@ -2,12 +2,15 @@ package captacao.vemser.dbccompany.pages;
 
 import net.datafaker.Faker;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -40,6 +43,7 @@ public class InfoPage extends BasePage {
     private static final By opcaoNeurodiversidadeSim = By.cssSelector("#menu-neurodiversidadeBoolean li:nth-child(2)");
     private static final By campoProximaPagina = By.cssSelector("form > div:nth-child(1) > label");
     private static final By campoErroDataDeNascimento = By.cssSelector("p[id=\"step-1-dataNascimento-helper-text\"]");
+    private static final By itensBarraDeStatus = By.cssSelector("div:nth-child(1) span[class*=\"MuiStepLabel-iconContainer\"]");
 
     public void preencherNomeValido() {
         preencheCampo(campoNome, faker.name().nameWithMiddle().replaceAll("[-+.^:,]",""));
@@ -197,5 +201,16 @@ public class InfoPage extends BasePage {
     }
     public Boolean verificaExistenciaProximaPagina(){
         return verificaExistenciaElemento(campoProximaPagina);
+    }
+
+    public List<String> listaDeClassesDeElementosDaBarraDeStatus() {
+        List<WebElement> elementos = buscaElementos(itensBarraDeStatus);
+        List<String> listaDeClasses = new ArrayList<>();
+
+        for (int i = 0; i < elementos.size(); i++) {
+            listaDeClasses.add(extraiClassesElemento(elementos.get(i)));
+        }
+
+        return listaDeClasses;
     }
 }

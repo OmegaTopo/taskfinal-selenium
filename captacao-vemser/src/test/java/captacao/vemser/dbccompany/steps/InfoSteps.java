@@ -295,6 +295,15 @@ public class InfoSteps extends BaseSteps {
     }
 
     @Test
+    public void verificaSeCampoInformacoesEstaEmDestaque() {
+        String classeElementoAtivo = "Mui-active";
+
+        String classesCampoInformacoes = infoPage.listaDeClassesDeElementosDaBarraDeStatus().get(0);
+
+        Assert.assertTrue(classesCampoInformacoes.contains(classeElementoAtivo));
+    }
+
+    @Test
     public void avancarParaFormularioComSucesso(){
         infoPage.preencherNomeValido();
         infoPage.preencherEmailValido();
