@@ -1,6 +1,7 @@
 package captacao.vemser.dbccompany.steps;
 
 import captacao.vemser.dbccompany.pages.BasePage;
+import captacao.vemser.dbccompany.pages.FormPage;
 import captacao.vemser.dbccompany.pages.InfoPage;
 import captacao.vemser.dbccompany.pages.HomePage;
 import org.junit.Assert;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 public class InfoSteps extends BaseSteps {
     HomePage homePage = new HomePage();
     InfoPage infoPage = new InfoPage();
+    FormPage formPage = new FormPage();
 
     @Before
     public void acessarInfo(){
@@ -157,6 +159,9 @@ public class InfoSteps extends BaseSteps {
     public void preencherCPFValido(){
         infoPage.preencherCPFValido();
         infoPage.clicarEmProximo();
+
+        Boolean campoExiste = infoPage.verificaExistenciaCampoErroCPF();
+        Assert.assertFalse(campoExiste);
     }
     @Test
     public void preencherCPFInvalido(){
@@ -315,5 +320,8 @@ public class InfoSteps extends BaseSteps {
         infoPage.selecionarEstadoPA();
         infoPage.preencherCampoNeurodiversidadeNao();
         infoPage.clicarEmProximo();
+
+        Boolean campoExiste = formPage.verificaPaginaAtual();
+        Assert.assertTrue(campoExiste);
     }
 }

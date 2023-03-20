@@ -203,6 +203,9 @@ public class InfoPage extends BasePage {
         return verificaExistenciaElemento(campoProximaPagina);
     }
 
+    public Boolean verificaExistenciaCampoErroCPF(){
+        return verificaExistenciaElemento(campoErroCPF);
+    }
     public List<String> listaDeClassesDeElementosDaBarraDeStatus() {
         List<WebElement> elementos = buscaElementos(itensBarraDeStatus);
         List<String> listaDeClasses = new ArrayList<>();
@@ -210,7 +213,6 @@ public class InfoPage extends BasePage {
         for (int i = 0; i < elementos.size(); i++) {
             listaDeClasses.add(extraiClassesElemento(elementos.get(i)));
         }
-
         return listaDeClasses;
     }
 }

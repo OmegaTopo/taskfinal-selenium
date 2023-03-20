@@ -37,11 +37,17 @@ public class FormSteps extends BaseSteps {
     @Test
     public void marcarTurnoNoite() {
         formPage.marcarTurnoNoite();
+
+        Boolean campoExiste = formPage.verificaSelecaoTurnoNoite();
+        Assert.assertTrue(campoExiste);
     }
 
     @Test
     public void marcarTurnoATarde() {
         formPage.marcarTurnoTarde();
+
+        Boolean campoExiste = formPage.verificaSelecaoTurnoTarde();
+        Assert.assertTrue(campoExiste);
     }
 
     @Test
@@ -80,43 +86,69 @@ public class FormSteps extends BaseSteps {
     public void selecionarDeficienciaNao() {
         formPage.selecionarDeficiencia();
         formPage.selecionarDeficienciaNao();
+
+        Boolean campoExiste = formPage.verificaSelecaoDeficiencia();
+        Assert.assertFalse(campoExiste);
     }
 
     @Test
     public void selecionarProvaTecnicaSim() {
         formPage.selecionarSimProvaTecnica();
+
+        Boolean campoExiste = formPage.verificaSelecaoProvaTecnicaSim();
+        Assert.assertTrue(campoExiste);
     }
 
     @Test
     public void selecionarProvaTecnicaNao() {
         formPage.selecionarNaoProvaTecnica();
+
+        Boolean campoExiste = formPage.verificaSelecaoProvaTecnicaNao();
+        Assert.assertTrue(campoExiste);
     }
 
     @Test
     public void selecionarInteresseDBCSim(){
         formPage.selecionarInteresseDBCSim();
+
+        Boolean campoExiste = formPage.verificaInteresseDBCSim();
+        Assert.assertFalse(campoExiste);
     }
 
     @Test
     public void selecionarInteresseDBCNao(){
         formPage.selecionarInteresseDBCNao();
+
+        Boolean campoExiste = formPage.verificaInteresseDBCNao();
+        Assert.assertFalse(campoExiste);
     }
 
     @Test
     public void enviarGitHub(){
+        String githubAntes = formPage.extraiClasseGithub();
         formPage.digitarLinkGitHub();
+
+        String githubDepois = formPage.extraiClasseGithub();
+        Assert.assertNotEquals(githubAntes, githubDepois);
     }
 
     @Test
     public void enviarGitHubEmBranco() {
+        String githubAntes = formPage.extraiClasseGithub();
         formPage.digitarLinkGitHubEmBranco();
         formPage.clicarEmEnviar();
+
+        String githubDepois = formPage.extraiClasseGithub();
+        Assert.assertNotEquals(githubAntes, githubDepois);
     }
 
     @Test
     public void enviarPrintConfiguracaoComSucesso() {
         formPage.enviarArquivoValidoPrint();
         formPage.clicarEmEnviar();
+
+        Boolean campoExiste = formPage.existenciaErroPrint();
+        Assert.assertFalse(campoExiste);
     }
     @Test
     public void enviarPrintConfiguracaoComFalha() {
@@ -131,8 +163,8 @@ public class FormSteps extends BaseSteps {
         formPage.enviarArquivoValidoCurriculo();
         formPage.clicarEmEnviar();
 
-        Boolean campoExiste = formPage.verificaExistenciaCampoErroCurriculo();
 
+        Boolean campoExiste = formPage.verificaExistenciaCampoErroCurriculo();
         Assert.assertFalse(campoExiste);
     }
     @Test
@@ -514,20 +546,32 @@ public class FormSteps extends BaseSteps {
 
     @Test
     public void preencherLinkedIn(){
+        String linkedInAntes = formPage.extraiClasseLinkedIn();
         formPage.preencheCampoLinkedIn();
         formPage.clicarEnviar();
+
+        String linkedInDepois = formPage.extraiClasseLinkedIn();
+        Assert.assertNotEquals(linkedInAntes, linkedInDepois);
     }
 
     @Test
     public void preencherLinkedInInvalido() {
+        String linkedInAntes = formPage.extraiClasseLinkedIn();
         formPage.preencheCampoLinkedInInvalido();
         formPage.clicarEnviar();
+
+        String linkedInDepois = formPage.extraiClasseLinkedIn();
+        Assert.assertNotEquals(linkedInAntes, linkedInDepois);
     }
 
     @Test
     public void preencherLinkedInOutroLink(){
+        String linkedInAntes = formPage.extraiClasseLinkedIn();
         formPage.preencheCampoLinkedInOutroSite();
         formPage.clicarEnviar();
+
+        String linkedInDepois = formPage.extraiClasseLinkedIn();
+        Assert.assertNotEquals(linkedInAntes, linkedInDepois);
     }
 
     @Test
@@ -596,6 +640,7 @@ public class FormSteps extends BaseSteps {
         formPage.enviarArquivoValidoCurriculo();
         formPage.clicarConcordarTratamento();
         formPage.clicarEmEnviar();
+
 
         String textoSucessoInscricao = "Inscrito com sucesso!";
 
