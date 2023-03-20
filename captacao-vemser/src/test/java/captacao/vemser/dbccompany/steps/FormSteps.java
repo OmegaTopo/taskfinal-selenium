@@ -370,6 +370,23 @@ public class FormSteps extends BaseSteps {
 
         Assert.assertTrue(opcaoMarcada);
     }
+
+    @Test
+    public void marcarOpcaoDisponibilidadeEfetivacaoSim(){
+        formPage.clicarDisponibilidadeEfetivarSim();
+
+        Boolean opcaoMarcada = formPage.verificaDisponibilidadeEfetivacaoSim();
+        Assert.assertTrue(opcaoMarcada);
+    }
+
+    @Test
+    public void marcarOpcaoDisponibilidadeEfetivacaoNao(){
+        formPage.clicarDisponibilidadeEfetivarNao();
+
+        Boolean opcaoMarcada = formPage.verificaDisponibilidadeEfetivacaoNao();
+        Assert.assertTrue(opcaoMarcada);
+
+    }
     @Test
     public void preencherInstituicaoCorretamente() {
         formPage.preencherCampoInstituicao();
@@ -382,6 +399,15 @@ public class FormSteps extends BaseSteps {
     @Test
     public void preencherInstituicaoIncorretamente() {
         formPage.preencherCampoInstituicaoIncorretamente();
+        formPage.clicarEnviar();
+
+        Boolean campoExiste = formPage.verificaExistenciaErroInstituicao();
+        Assert.assertTrue(campoExiste);
+    }
+
+    @Test
+    public void preencherInstituicaoIncorretamenteComNumeros() {
+        formPage.preencherCampoInstituicaoIncorretamenteNumeros();
         formPage.clicarEnviar();
 
         Boolean campoExiste = formPage.verificaExistenciaErroInstituicao();

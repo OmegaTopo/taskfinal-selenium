@@ -295,6 +295,15 @@ public class InfoSteps extends BaseSteps {
     }
 
     @Test
+    public void neurodiversidadeSimCampoVazio(){
+        infoPage.preencherCampoNeurodiversidadeSim();
+        infoPage.clicarEmProximo();
+
+        Boolean proximoSite = infoPage.verificaExistenciaProximaPagina();
+        Assert.assertFalse(proximoSite);
+    }
+
+    @Test
     public void avancarParaFormularioComSucesso(){
         infoPage.preencherNomeValido();
         infoPage.preencherEmailValido();
