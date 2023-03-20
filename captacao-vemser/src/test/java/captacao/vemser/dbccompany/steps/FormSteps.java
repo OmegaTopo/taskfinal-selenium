@@ -6,6 +6,8 @@ import captacao.vemser.dbccompany.pages.InfoPage;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class FormSteps extends BaseSteps {
 
@@ -104,28 +106,37 @@ public class FormSteps extends BaseSteps {
     @Test
     public void enviarGitHubEmBranco() {
         formPage.digitarLinkGitHubEmBranco();
-        formPage.enviarFormulario();
+        formPage.clicarEmEnviar();
     }
 
     @Test
-    public void enviarPrintConfiguracao() {
-        formPage.enviarPrintConfiguracoes();
-        formPage.enviarFormulario();
+    public void enviarPrintConfiguracaoComSucesso() {
+        formPage.enviarArquivoValidoPrint();
+        formPage.clicarEmEnviar();
+    }
+    @Test
+    public void enviarPrintConfiguracaoComFalha() {
+        formPage.enviarArquivoInvalidoPrint();
+        formPage.clicarEmEnviar();
+
+        String validador = formPage.validarTextoErroTipoArquivoPrint();
+        Assert.assertEquals("O tipo de arquivo não é suportado",validador);
+    }
+    @Test
+    public void enviarCurriculoComSucesso() {
+        formPage.enviarArquivoValidoCurriculo();
+        formPage.clicarEmEnviar();
+    }
+    @Test
+    public void enviarCurriculoComFalha() {
+        formPage.enviarArquivoInvalidoCurriculo();
+        formPage.clicarEmEnviar();
+
+        String validador = formPage.validarTextoErroTipoArquivoCurriculo();
+        Assert.assertEquals("O tipo de arquivo não é suportado. Só é possível enviar PDF.",validador);
     }
 
     @Test
-    public void avancar() {
-        formPage.marcarTurnoNoite();
-        formPage.marcarInglesFluente();
-        formPage.selecionarGeneroNaoBinario();
-        formPage.selecionarDeficiencia();
-        formPage.selecionarDeficienciaNao();
-        formPage.selecionarSimProvaTecnica();
-        formPage.digitarLinkGitHub();
-//      formPage.enviarPrintConfiguracoes();
-        formPage.enviarFormulario();
-    }
-
     public void preencherMatriculadoComRespostaPositiva() {
 
         formPage.marcarCampoMatriculadoSim();
@@ -491,4 +502,39 @@ public class FormSteps extends BaseSteps {
         Boolean paginaForm = formPage.verificaPaginaAtual();
         Assert.assertFalse(paginaForm);
     }
+
+    @Test
+    public void avancar() {
+        formPage.preencheCampoCursoComStringValida();
+        formPage.preencherCampoInstituicao();
+        formPage.marcarCampoMatriculadoSim();
+        formPage.marcarTurnoNoite();
+        formPage.clicaOpcaoTrilhaBackend();
+        formPage.clicaOpcaoTrilhaQa();
+        formPage.clicaOpcaoTrilhaFrontend();
+        formPage.marcarInglesFluente();
+        formPage.clicarEspanhol();
+        formPage.clicarEspanholNenhum();
+        formPage.clicarBtnLinguagemInteresse();
+        formPage.clicarEmJava();
+        formPage.clicarBtnLinguagemInteresseSair();
+        formPage.clicarNoCampoOrientacaoSexual();
+        formPage.clicarNaOpcaoOrientacaoPansexual();
+        formPage.selecionarGeneroNaoBinario();
+        formPage.selecionarDeficiencia();
+        formPage.selecionarDeficienciaNao();
+        formPage.selecionarSimProvaTecnica();
+        formPage.clicarNoCampoImportanteParaAVida();
+        formPage.preencherCampoImportanteParaAVidaComSucesso();
+        formPage.preencheCampoMotivo();
+        formPage.clicarNaOpcaoDisponibilidadeParaEstudoSim();
+        formPage.selecionarInteresseDBCSim();
+        formPage.digitarLinkGitHub();
+        formPage.preencheCampoLinkedIn();
+        formPage.enviarArquivoValidoPrint();
+        formPage.enviarArquivoValidoCurriculo();
+        formPage.clicarConcordarTratamento();
+        formPage.clicarEmEnviar();
+    }
+    
 }
