@@ -19,30 +19,32 @@ public class FormPage extends BasePage {
     private static final By btnSelecaoEspanhol = By.cssSelector("div:nth-child(6) > div > div");
     private static final By btnEspanholNenhum = By.cssSelector("#menu-espanhol li:nth-child(1)");
     private static final By btnEspanholFluente = By.cssSelector("#menu-espanhol li:nth-child(5)");
+    private static final By campoLabelEspanhol = By.cssSelector("div:nth-child(6) > div > label");
+    private static final By campoErroLinguagem = By.cssSelector("div:nth-child(9) > div > p");
     // Instituição de Ensino
     private static final By campoInstituicaoEnsino = By.cssSelector("[id=instituicao-de-ensino-candidato]");
+    private static final By campoErroInstituicao = By.cssSelector("#instituicao-de-ensino-candidato-helper-text");
     // Linguagem de programação
     private static final By btnLinguagemInteresse = By.cssSelector("div:nth-child(9) > div > div");
     private static final By btnLinguagemInteresseSair = By.cssSelector("#menu- > div.MuiBackdrop-root.MuiBackdrop-invisible.css-esi9ax");
     private static final By btnJava = By.cssSelector("#menu- li:nth-child(4) .MuiButtonBase-root");
-    //
+    // Campo Motivo de Interesse
     private static final By campoMotivoInteresse = By.cssSelector("[id=s2-candidato-motivo]");
-    private static final By btnDisponibilidadeEfetivacaoSim = By.cssSelector("#s2-candidato-efetivacao-sim .css-hyxlzm");
-    private static final By btnDisponobilidadeEfetivacaoNao = By.cssSelector("#s2-candidato-efetivacao-nao .css-hyxlzm");
+    // Botões Disponibilidade de Efetivação
+    private static final By btnDisponibilidadeEfetivacaoSim = By.cssSelector("label[id=\"s2-candidato-efetivacao-sim\"] input[value=\"T\"]");
+    private static final By btnDisponobilidadeEfetivacaoNao = By.cssSelector("label[id=\"s2-candidato-efetivacao-nao\"] input[value=\"F\"]");
     // LinkedIn e GitHub
     private static final By campoLinkLinkedIn = By.cssSelector("[id=s2-candidato-linkedin]");
     private static final By campoLabelLinkedIn = By.cssSelector("#s2-candidato-linkedin-label");
     private static final By campoGitHub = By.cssSelector("[id=s2-candidato-github]");
-    //
+    // Concordar Dados
     private static final By btnConcordarDados = By.cssSelector("#s2-candidato-lgpd span:nth-child(1)");
+    private static final By campoErroConcordar = By.cssSelector("#mensagem-erro-lgpd");
+    // Voltar
     private static final By btnIrParaInscricao = By.cssSelector("div > button");
-    private static final By campoErroInstituicao = By.cssSelector("#instituicao-de-ensino-candidato-helper-text");
-    private static final By campoLabelEspanhol = By.cssSelector("div:nth-child(6) > div > label");
-    private static final By campoErroLinguagem = By.cssSelector("div:nth-child(9) > div > p");
     private static final By campoTextoFormulario = By.cssSelector("div:nth-child(3) > span > span.MuiStepLabel-labelContainer.css-h2cmlr > span > div > p");
     private static final By campoErroMotivo = By.cssSelector("#s2-candidato-motivo-helper-text");
     private static final By campoPaginaAtual = By.cssSelector("form > div:nth-child(1) > label");
-    private static final By campoErroConcordar = By.cssSelector("#mensagem-erro-lgpd");
     // Gênero
     private static final By campoGenero = By.cssSelector("[id=s2-select-genero-candidato]");
     private static final By campoGeneroHomemCis = By.cssSelector("li.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.Mui-selected.MuiMenuItem-root.MuiMenuItem-gutters.Mui-selected.css-12kak8r");
@@ -103,7 +105,21 @@ public class FormPage extends BasePage {
     public void preencherCampoInstituicaoIncorretamente() {
         preencheCampo(campoInstituicaoEnsino, faker.lorem().sentence(50));
     }
-
+    public void preencherCampoInstituicaoIncorretamenteNumeros(){
+        preencheCampo(campoInstituicaoEnsino, "11@@33$$55^^77");
+    }
+    public void clicarDisponibilidadeEfetivarSim(){
+        clicar(btnDisponibilidadeEfetivacaoSim);
+    }
+    public void clicarDisponibilidadeEfetivarNao(){
+        clicar(btnDisponobilidadeEfetivacaoNao);
+    }
+    public Boolean verificaDisponibilidadeEfetivacaoSim() {
+        return verificaSeElementoEstaSelecionado(btnDisponibilidadeEfetivacaoSim);
+    }
+    public Boolean verificaDisponibilidadeEfetivacaoNao() {
+        return verificaSeElementoEstaSelecionado(btnDisponobilidadeEfetivacaoNao);
+    }
     public void clicarEnviar() {
         clicar(btnEnviar);
     }
