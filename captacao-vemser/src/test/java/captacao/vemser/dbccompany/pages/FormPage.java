@@ -99,7 +99,7 @@ public class FormPage extends BasePage {
     }
 
     public void preencherCampoInstituicao() {
-        preencheCampo(campoInstituicaoEnsino, faker.university().name().replaceAll("[-+.^:,]",""));
+        preencheCampo(campoInstituicaoEnsino, faker.university().name().replaceAll("[-+.)(^:,]",""));
     }
 
     public void preencherCampoInstituicaoIncorretamente() {
